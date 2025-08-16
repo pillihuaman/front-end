@@ -1,0 +1,106 @@
+<!-- Archivo: src/app/pages/bussiness/contact/detail-contact/detail-contact.component.html -->
+<nb-card>
+  <nb-card-header>
+    <span>{{ isEditMode ? 'Editar Contacto' : 'Nuevo Contacto' }}</span>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="contactForm" (ngSubmit)="saveContact()">
+      
+      <h5>Información General</h5>
+         @if (!showInquirySection) {
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="name" class="label">Nombre (Ej: Sede Arequipa)</label>
+            <input id="name" nbInput fullWidth placeholder="Nombre o identificador" formControlName="name">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="type" class="label">Tipo de Contacto</label>
+            <nb-select fullWidth placeholder="Seleccionar Tipo" formControlName="type">
+              <nb-option *ngFor="let type of contactTypes" [value]="type">{{ type }}</nb-option>
+            </nb-select>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <h5>Dirección</h5>
+      <div class="row">
+        <div class="col-md-12"><div class="form-group"><label class="label">Calle / Avenida</label><input nbInput fullWidth formControlName="street"></div></div>
+        <div class="col-md-4"><div class="form-group"><label class="label">Ciudad</label><input nbInput fullWidth formControlName="city"></div></div>
+        <div class="col-md-4"><div class="form-group"><label class="label">Región / Urbanización</label><input nbInput fullWidth formControlName="region"></div></div>
+        <div class="col-md-4"><div class="form-group"><label class="label">País</label><input nbInput fullWidth formControlName="country"></div></div>
+      </div>
+
+      <hr>
+      <h5>Teléfonos</h5>
+      <div formArrayName="phones">
+        <div *ngFor="let phone of phones.controls; let i=index" [formGroupName]="i" class="row align-items-center mb-2">
+          <div class="col-md-5"><input nbInput fullWidth placeholder="Tipo (Ej: Celular)" formControlName="type"></div>
+          <div class="col-md-5"><input nbInput fullWidth placeholder="Número" formControlName="number"></div>
+          <div class="col-md-2"><button type="button" nbButton ghost status="danger" (click)="removePhone(i)"><nb-icon icon="trash-2-outline"></nb-icon></button></div>
+        </div>
+      </div>
+      <button type="button" nbButton status="success" size="small" (click)="addPhone()" class="mt-2">
+        <nb-icon icon="plus-outline"></nb-icon> Añadir Teléfono
+      </button>
+
+      <hr>
+      <h5>Correos Electrónicos</h5>
+      <div formArrayName="emails">
+        <div *ngFor="let email of emails.controls; let i=index" [formGroupName]="i" class="row align-items-center mb-2">
+          <div class="col-md-5"><input nbInput fullWidth placeholder="Tipo (Ej: Ventas)" formControlName="type"></div>
+          <div class="col-md-5"><input nbInput fullWidth placeholder="Dirección de correo" formControlName="address"></div>
+          <div class="col-md-2"><button type="button" nbButton ghost status="danger" (click)="removeEmail(i)"><nb-icon icon="trash-2-outline"></nb-icon></button></div>
+        </div>
+      </div>
+      <button type="button" nbButton status="success" size="small" (click)="addEmail()" class="mt-2">
+        <nb-icon icon="plus-outline"></nb-icon> Añadir Correo
+      </button>
+    }
+
+       @if (showInquirySection) {
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="label">Nombre y Apellido</label>
+              <input nbInput fullWidth placeholder="Escribe tu nombre completo" formControlName="inquiryFullName">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="label">Email</label>
+              <input nbInput fullWidth placeholder="Escribe tu correo" formControlName="inquiryEmail">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="label">Celular (Opcional)</label>
+              <input nbInput fullWidth placeholder="Escribe tu celular" formControlName="inquiryPhone">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label class="label">Mensaje de Consulta</label>
+              <textarea nbInput fullWidth rows="5" placeholder="Escribe tu consulta aquí..." formControlName="inquiryMessage"></textarea>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Botones de Acción -->
+    <div class="d-flex justify-content-end gap-2 mt-4">
+        @if (!showInquirySection) {
+          <button type="button" nbButton status="basic" (click)="returnToList()">Cancelar</button>
+        }
+        <button type="submit" nbButton status="primary" [disabled]="contactForm.invalid || (isEditMode && contactForm.pristine)">
+          {{ showInquirySection ? 'Enviar Consulta' : (isEditMode ? 'Actualizar' : 'Guardar') }}
+        </button>
+      </div>
+
+
+    </form>
+  </nb-card-body>
+</nb-card>

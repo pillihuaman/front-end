@@ -1,0 +1,59 @@
+
+<nb-card>
+    <nb-card-body>
+      Data table source custom
+      <label class="search-label" for="search">Search:</label>
+      <input nbInput [nbFilterInput]="dataSource" id="search" class="search-input">
+  
+      <table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)">
+  
+        <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="getHeaderColumns()"></tr>
+        <!-- Data Rows -->
+        <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: getRowColumns()"></tr>
+            
+        <!--  <ng-container [nbTreeGridColumnDef]="'Nro'">
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+            Nro
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data['Nro'] || '-'}}</td>
+        </ng-container>-->
+  
+  
+        
+        <!-- Custom Column with Edit and Delete Icons -->
+        <ng-container [nbTreeGridColumnDef]="'acciones'">
+          <th nbTreeGridHeaderCell *nbTreeGridHeaderCellDef>
+            Acciones
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row" class="actions-cell">
+              <nb-icon icon="edit-outline" (click)="onEdit(row)"></nb-icon>
+              <nb-icon icon="trash-outline" (click)="onDelete(row)" ></nb-icon>
+          </td>
+        </ng-container>
+        <!-- Your Existing Columns -->
+        <ng-container *ngFor="let column of defaultColumnsBySearchType; let index = index" [nbTreeGridColumnDef]="column"
+          [showOn]="getShowOn(index)">
+          <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+            {{column}}
+          </th>
+          <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
+        </ng-container>
+        <ng-template #noDataTemplate>
+          <tr>
+            <td [attr.colspan]="allColumns.length + 1">No data available</td>
+          </tr>
+        </ng-template>
+      </table>
+      <div class="pagination-container">
+        <div class="pagination">
+          <button nbButton status="primary" (click)="onPageChangeBack(currentPage - 1)" [disabled]="currentPage === 1">
+            Previous
+          </button>
+          <span>Page {{ currentPage }}</span>
+          <button nbButton status="primary" (click)="onPageChange(currentPage + 1)" [disabled]="!hasMorePagesTBySearchType">
+            Next
+          </button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>

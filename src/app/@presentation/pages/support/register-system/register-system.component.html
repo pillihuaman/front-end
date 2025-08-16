@@ -1,0 +1,61 @@
+<form [formGroup]="systemRequestForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+
+    <div class="form-group">
+
+      <nb-input type="text" placeholder="Name" fullWidth formControlName="name"></nb-input>
+
+    </div>
+
+    <div class="form-group">
+
+      <nb-input type="text" placeholder="Version" fullWidth formControlName="version"></nb-input>
+
+
+      <div class="error-message" *ngIf="systemRequestForm.get('version')?.invalid">
+        <ng-container *ngFor="let errorMessage of formErrors['version']">
+          <div class="text-danger">{{ errorMessage }}</div>
+        </ng-container>
+        <div *ngIf="systemRequestForm.get('version')?.hasError('customError')">
+          <span class="text-danger">
+            {{ systemRequestForm.get('version')?.getError('customError') }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+
+      <nb-input type="text" placeholder="Main Menu" fullWidth formControlName="mainMenu"></nb-input>
+
+    </div>
+
+    <div class="form-group">
+
+      <nb-input type="email" placeholder="Contact Email" fullWidth formControlName="contactEmail"></nb-input>
+
+
+      <div class="error-message" *ngIf="systemRequestForm.get('contactEmail')?.invalid">
+        <ng-container *ngFor="let errorMessage of formErrors['contactEmail']">
+          <div class="text-danger">{{ errorMessage }}</div>
+        </ng-container>
+        <div *ngIf="systemRequestForm.get('contactEmail')?.hasError('customError')">
+          <span class="text-danger">
+            {{ systemRequestForm.get('contactEmail')?.getError('customError') }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+
+      <nb-input type="text" placeholder="Support Phone" fullWidth formControlName="supportPhone"></nb-input>
+
+    </div>
+
+    <div class="form-group">
+
+    </div>
+
+  </div>
+</form>

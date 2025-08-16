@@ -1,0 +1,20 @@
+<p>support-tenant-detail works!</p>
+<nb-card>
+  <nb-card-header>Tenant Detail</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="tenantForm">
+      <div class="form-grid">
+        <input nbInput fullWidth placeholder="ID" formControlName="id" readonly />
+        <input nbInput fullWidth placeholder="Nombre" formControlName="name" />
+        <input nbInput fullWidth placeholder="Dominio" formControlName="domain" />
+      </div>
+
+      <nb-checkbox formControlName="active">Activo</nb-checkbox>
+
+      <div class="button-container">
+        <button nbButton status="primary" (click)="saveTenant()">Guardar</button>
+        <button nbButton status="danger" (click)="returnToList()">Volver</button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

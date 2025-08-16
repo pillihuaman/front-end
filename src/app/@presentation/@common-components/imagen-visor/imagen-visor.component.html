@@ -1,0 +1,15 @@
+<div class="carousel-container">
+  <img
+    *ngIf="image.firstObject === 'primer'"
+    [src]="image.imageSrc"
+    [alt]="image.imageAlt"
+    [attr.id]="image.imagetoken"
+    class="image-active"
+  />
+  <img
+    *ngIf="secondimage.imageSrc !== ''"
+    [src]="secondimage.imageSrc"
+    [alt]="image.imageAlt"
+    class="image-active-off"
+  />
+</div>

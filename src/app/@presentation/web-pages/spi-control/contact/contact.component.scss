@@ -1,0 +1,81 @@
+:host {
+  display: block;
+  background-color: white;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1300px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
+
+/* --- Columna Izquierda: Información --- */
+.contact-info {
+  background-color: #f8f9fa;
+  padding: 3rem;
+  border-radius: 8px;
+}
+
+.info-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.info-block nb-icon {
+  font-size: 2.5rem;
+  color: #0d7b8a;
+}
+
+.info-content h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.info-content p {
+  margin: 0 0 0.5rem 0;
+  line-height: 1.6;
+}
+
+/* --- Columna Derecha: Formulario --- */
+/* NOTA: La clase .contact-form-container se eliminó ya que su único propósito era dar el fondo amarillo.
+   El formulario ahora se mostrará con su propio fondo por defecto. */
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  /* Damos un color explícito para que no dependa del contexto del contenedor amarillo que ya no existe */
+  color: #333; 
+}
+
+.form-header p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.form-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+  color: #111;
+}
+
+/* --- Sección del Mapa --- */
+.map-section {
+  width: 100%;
+  margin-top: 4rem; /* Añadimos un margen superior para separar del contenido */
+}
+
+.map-section img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

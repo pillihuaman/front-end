@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="6878290845258397584" datatype="html">
+        <source>*Product</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/@presentation/pages/support/register-stock/register-stock.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4514487199724414799" datatype="html">
+        <source>Bar Code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/@presentation/pages/support/register-stock/register-stock.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8177873832400820695" datatype="html">
+        <source>Count</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/@presentation/pages/support/register-stock/register-stock.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4545230588167223289" datatype="html">
+        <source>Attach Image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/@presentation/pages/support/register-stock/register-stock.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{&quot;12/12/2023&quot; | date }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/@presentation/pages/support/register-stock/register-stock.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/@presentation/pages/support/register-stock/register-stock.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1737753151350322492" datatype="html">
+        <source><x id="PH" equiv-text="this.title"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/@presentation/pages/support/register-stock/register-stock.component.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,39 @@
+<div class="form-container">
+  <form [formGroup]="unifiedForm">
+    <nb-accordion>
+      <nb-accordion-item expanded="true">
+        <nb-accordion-item-header>Búsqueda de Tenants</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <div class="form-grid">
+            <input nbInput fullWidth placeholder="ID" formControlName="id" />
+            <input nbInput fullWidth placeholder="Nombre" formControlName="name" />
+            <input nbInput fullWidth placeholder="Dominio" formControlName="domain" />
+          </div>
+          <div class="button-container">
+            <div class="action-buttons-grid">
+              <button nbButton status="primary" (click)="findByparameter()">🔍 Buscar</button>
+              <button nbButton status="success" (click)="onNewTenant()">➕ Nuevo Tenant</button>
+            </div>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+
+    <nb-accordion>
+      <nb-accordion-item expanded="true">
+        <nb-accordion-item-header>Resultados</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <app-table-datasource
+            [datas]="results"
+            [defaultColumns]="defaultColumnsInput"
+            (editAction)="handleEditAction($event)"
+            (deleteAction)="deleting($event)"
+            [hasMorePages]="hasMorePagesT"
+            (loadMoreData)="loadTenantData()"
+            (noData)="showNoDataMessage()">
+          </app-table-datasource>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </form>
+</div>

@@ -1,0 +1,46 @@
+<!-- BANNER SUPERIOR DE LA PÁGINA -->
+<section class="page-banner">
+  <div class="banner-content">
+    <h1>Productos de Instrumentación</h1>
+
+  </div>
+</section>
+
+<!-- SECCIÓN DE INTRODUCCIÓN CON LOGO -->
+<section class="page-section logo-intro">
+  <h2>PRODUCTOS DE INSTRUMENTACIÓN</h2>
+  <img src="assets/web-pages/spi-control/LOGO-SPI-CONTROL-2023-Oficial.png" alt="Logo SPI Control">
+</section>
+
+<!-- SECCIÓN PRINCIPAL DE LISTA DE PRODUCTOS -->
+<section class="page-section products-list">
+  <div class="products-container">
+    @for(product of instrumentationProducts; track product.title) {
+      <div class="product-item">
+        <!-- Columna de la Imagen -->
+        <div class="product-image">
+          <div class="image-content">
+            <h3>{{ product.title }}</h3>
+            <img [src]="product.image" [alt]="product.title">
+          </div>
+        </div>
+        <!-- Columna del Texto -->
+        <div class="product-text">
+          <p><strong>{{ product.title }}:</strong> {{ product.description }}</p>
+          <h4>Beneficios:</h4>
+          <ul>
+            @for(benefit of product.benefits; track benefit) {
+              <li>{{ benefit }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- SECCIÓN CALL TO ACTION (CTA) -->
+<section class="cta-section">
+  <h2>Realiza tu consulta <strong>Aquí</strong></h2>
+  <button nbButton status="warning" size="large">Contáctanos</button>
+</section>

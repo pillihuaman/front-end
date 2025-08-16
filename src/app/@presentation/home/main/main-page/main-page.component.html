@@ -1,0 +1,134 @@
+<div class="surreal-container">
+  <!-- Banner de Bienvenida con Buscador Integrado -->
+  <div class="platform-banner-surreal">
+    <div class="banner-content">
+      <h1>Explora un Universo de Estilo</h1>
+      <p>Encuentra productos que desafían la realidad en Alamodaperu.online</p>
+    </div>
+  </div>
+
+  <!-- NUEVO: Sección de Productos Destacados -->
+  <section class="new-section">
+
+    <div class="featured-carousel">
+      <!-- Reemplaza estas URLs con tus imágenes de productos destacados o publicidad -->
+      <div class="featured-card"
+        style="background-image: url('https://res.cloudinary.com/dgxyw8pkn/image/upload/v1755222727/Google_AI_Studio_2025-08-15T01_33_14.903Z_zuquzm.png');">
+        <div class="featured-info">
+          <h3>Colección Invierno</h3>
+          <p>Edición Limitada</p>
+        </div>
+      </div>
+      <div class="featured-card"
+        style="background-image: url('https://res.cloudinary.com/dgxyw8pkn/image/upload/v1755222738/Google_AI_Studio_2025-08-15T01_24_29.759Z_h6gnhn.png');">
+        <div class="featured-info">
+          <h3>Personalizados</h3>
+          <p>Crea tu propio estilo</p>
+        </div>
+      </div>
+      <div class="featured-card"
+        style="background-image: url('https://res.cloudinary.com/dgxyw8pkn/image/upload/v1755222711/487789234_1067477902064607_8740994143899168729_n_wxnzg8.jpg');">
+        <div class="featured-info">
+          <h3>Estilo Urbano</h3>
+          <p>Lo nuevo en casual</p>
+        </div>
+      </div>
+      <div class="featured-card"
+        style="background-image: url('https://res.cloudinary.com/dgxyw8pkn/image/upload/v1755228287/Google_AI_Studio_2025-07-27T22_23_11.990Z_nmwcib.png');">
+        <div class="featured-info">
+          <h3>Niños</h3>
+          <p>casual</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Galería Principal de Productos (Tu código original) -->
+  <section class="new-section">
+    <h2 class="section-title">Nuestro Catálogo</h2>
+    <div class="product-gallery-surreal" *ngIf="!isCatalogLoading">
+      <ng-container *ngIf="(catalogImagesMetadata?.length ?? 0) > 0; else noData">
+        <div class="product-card-surreal" *ngFor="let product of catalogImagesMetadata; let i = index">
+          <div class="image-container">
+            <app-imagen-catch-information *ngIf="product.respProduct?.fileMetadata?.length"
+              [urlImagen]="product.respProduct?.fileMetadata?.[0]?.url">
+            </app-imagen-catch-information>
+            <div class="product-status" [ngClass]="product.respProduct?.status ? 'active' : 'inactive'">
+              {{ product.respProduct?.status ? 'Activo' : 'Inactivo' }}
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">{{ product.respProduct?.name || 'Producto Misterioso' }}</h3>
+            <p class="product-description">{{ product.respProduct?.description || 'Una descripción que escapa a la
+              lógica.' }}</p>
+            <div class="product-meta">
+              <span class="product-price">{{ product.respProduct?.pricing?.sellingPrice | currency:'s/.' }}</span>
+              <span class="product-category">{{ product.respProduct?.category }}</span>
+            </div>
+            <button nbButton status="primary" shape="round" size="small" (click)="viewCatalog(product.respProduct)">
+              Explorar Catálogo
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #noData>
+        <nb-alert status="warning" class="no-data-alert">El universo de productos está vacío por el momento.</nb-alert>
+      </ng-template>
+    </div>
+  </section>
+  <footer class="surreal-footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3 class="footer-title">Alamodaperu.online</h3>
+        <p class="footer-description">Vistiendo la realidad con un toque de imaginación. Encuentra tu estilo único con
+          nosotros.</p>
+      </div>
+      <div class="footer-column">
+        <h3 class="footer-title">Navegación</h3>
+        <ul class="footer-links">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Tienda</a></li>
+          <li><a href="#">Nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3 class="footer-title">Síguenos</h3>
+        <div class="social-icons">
+          <a href="#" class="social-link"><nb-icon icon="facebook-outline" pack="eva"></nb-icon></a>
+          <a href="#" class="social-link"><nb-icon icon="instagram-outline" pack="eva"></nb-icon></a>
+          <a href="#" class="social-link"><nb-icon icon="twitter-outline" pack="eva"></nb-icon></a>
+        </div>
+      </div>
+  <app-detail-contact [showInquirySection]="true"></app-detail-contact>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Alamodaperu.online — Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================= -->
+  <!-- ===== NUEVO: BOTONES FLOTANTES SOCIALES ===== -->
+  <!-- ============================================= -->
+  <div class="floating-socials">
+    <a href="https://wa.me/51933418411?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20productos."
+      target="_blank" rel="noopener noreferrer" class="social-button whatsapp">
+      <nb-icon icon="message-circle-outline" pack="eva" aria-label="WhatsApp"></nb-icon>
+    </a>
+    <a href="https://www.facebook.com/alamodaperucom" target="_blank" rel="noopener noreferrer"
+      class="social-button facebook">
+      <nb-icon icon="facebook-outline" pack="eva" aria-label="Facebook"></nb-icon>
+    </a>
+    <a href="https://www.tiktok.com/@alamodaperucom" target="_blank" rel="noopener noreferrer"
+      class="social-button tiktok">
+      <nb-icon icon="music-outline" pack="eva" aria-label="TikTok"></nb-icon>
+    </a>
+    <a href="https://youtube.com/@alamodaperu.online?si=3VXsYhPm5Jkywdf8" target="_blank" rel="noopener noreferrer"
+      class="social-button youtube">
+      <nb-icon icon="video-outline" pack="eva" aria-label="YouTube"></nb-icon>
+    </a>
+  </div>
+
+</div>

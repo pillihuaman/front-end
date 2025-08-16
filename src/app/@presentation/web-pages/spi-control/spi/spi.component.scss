@@ -1,0 +1,164 @@
+/* Variables locales para colores específicos de esta página */
+:host {
+  --primary-blue: #0d7b8a;
+  --dark-text: #2c3e50;
+  --light-gray-bg: #f8f9fa;
+  --text-color: #555;
+  --border-color: #e0e0e0;
+}
+
+/* --- Estilos del Banner Superior --- */
+/* --- Estilos del Banner Superior --- */
+.page-banner {
+  position: relative;
+  padding: 6rem 2rem;
+  /* Ya no necesitas 'color' aquí, lo aplicaremos directamente al hijo */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('https://res.cloudinary.com/dgxyw8pkn/image/upload/v1754881714/Google_AI_Studio_2025-08-11T02_50_57.278Z_zq3owq.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.page-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* === LA CORRECCIÓN DEFINITIVA ESTÁ AQUÍ === */
+.banner-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  /* Le decimos explícitamente a este H1 que sea blanco */
+  color: white; 
+}
+
+/* También nos aseguramos de que el texto de 'breadcrumbs' sea blanco */
+.breadcrumbs {
+  margin-top: 0.5rem;
+  opacity: 0.9;
+  color: white; /* Añadimos esto para asegurar la consistencia */
+}
+
+/* --- Estilos Generales de Sección --- */
+.page-section {
+  padding: 4rem 2rem;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  align-items: center;
+}
+
+/* --- Estilos de la Sección de Introducción --- */
+.about-intro {
+  background-color: white;
+}
+
+.intro-logo {
+  text-align: center;
+}
+.intro-logo h2 {
+  color: var(--primary-blue);
+  margin-bottom: 2rem;
+}
+.intro-logo img {
+  max-width: 250px;
+}
+
+.intro-text p {
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+/* --- Estilos de Misión y Visión --- */
+.mission-vision {
+  background-color: var(--light-gray-bg);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.item-header nb-icon {
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+}
+
+.item-header h3 {
+  font-size: 1.8rem;
+  color: var(--dark-text);
+  margin: 0;
+}
+
+.mission-vision p {
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+/* --- Estilos de la Sección de Lista de Servicios --- */
+.services-list-section {
+  background-color: white;
+}
+
+.services-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.services-list h4 {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: var(--dark-text);
+}
+
+.services-list ul {
+  list-style: none;
+  padding: 0;
+  columns: 2; /* Crea un diseño de dos columnas para la lista */
+  column-gap: 2rem;
+}
+
+.services-list ul li {
+  margin-bottom: 0.8rem;
+}
+
+.services-list ul li a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.services-list ul li a:hover {
+  color: var(--dark-text);
+}
+
+/* --- Ajustes de Responsividad --- */
+@media (max-width: 768px) {
+  .banner-content h1 {
+    font-size: 2.5rem;
+  }
+  .services-list ul {
+    columns: 1; /* La lista pasa a una sola columna en pantallas pequeñas */
+  }
+}

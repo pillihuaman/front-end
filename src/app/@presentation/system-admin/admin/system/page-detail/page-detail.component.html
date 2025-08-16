@@ -1,0 +1,27 @@
+<nb-card>
+    <nb-card-header>Page Detail</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="pageForm">
+        <div class="form-grid">
+          <input nbInput fullWidth placeholder="ID" formControlName="id" readonly />
+          <input nbInput fullWidth placeholder="Name" formControlName="name" />
+          <input nbInput fullWidth placeholder="URL" formControlName="url" />
+          <input nbInput fullWidth placeholder="Component" formControlName="component" />
+          <input nbInput fullWidth placeholder="Icon" formControlName="icon" />
+          <nb-select fullWidth placeholder="Select System" formControlName="systemId">
+            <nb-option *ngFor="let sys of systems" [value]="sys.systemId">
+              {{ sys.systemName }}
+            </nb-option>
+          </nb-select>
+        </div>
+
+        <nb-checkbox formControlName="status">Active</nb-checkbox>
+  
+        <div class="button-container">
+          <button nbButton status="primary" (click)="savePage()">Save</button>
+          <button nbButton status="danger" (click)="returnPage()">Return</button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+  

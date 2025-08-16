@@ -1,0 +1,41 @@
+.modal-footer-card {
+    background: transparent;
+    box-shadow: none;
+    border-top: 1px solid var(--nb-border-basic);
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .modal-footer {
+    display: flex;
+    gap: 10px;
+  
+    button {
+      min-width: 100px;
+    }
+  }
+  .no-border {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  ::ng-deep .page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+::ng-deep .page-content {
+  flex-grow: 1;
+  padding: 1rem;
+  background-color: #f8f9fa; // Opcional: fondo principal
+}
+
+::ng-deep app-modal-footer {
+  flex-shrink: 0;
+}

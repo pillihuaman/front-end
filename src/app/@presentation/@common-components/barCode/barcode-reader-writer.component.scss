@@ -1,0 +1,93 @@
+.qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+  
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+  
+    video {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+  
+    button {
+      margin: 5px;
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+  
+  nb-card {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  nb-select {
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 1rem;
+  }
+  
+  .nb-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  input[nbInput] {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1rem;
+  }
+  
+  ngx-barcode {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    nb-card {
+      max-width: 90%;
+    }
+  
+    .qr-section video {
+      max-width: 300px;
+    }
+  
+    nb-select {
+      max-width: 100%;
+    }
+  
+    input[nbInput], button {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .qr-section h3 {
+      font-size: 1rem;
+    }
+  
+    .qr-section video {
+      max-width: 250px;
+    }
+  
+    nb-card {
+      max-width: 95%;
+    }
+  }
+  

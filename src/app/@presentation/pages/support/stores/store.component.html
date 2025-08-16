@@ -1,0 +1,46 @@
+<nb-layout>
+  <nb-layout-column>
+    <div class="form-container">
+      <form [formGroup]="StoreForm">
+        <nb-accordion multi="true">
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>Store Information</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              
+              <div class="form-grid">
+                <input nbInput fullWidth type="text" placeholder="ID" formControlName="id" (input)="checkInputs()" />
+                <input nbInput fullWidth type="text" placeholder="Name" formControlName="name" (input)="checkInputs()" />
+                <input nbInput fullWidth type="text" placeholder="Address" formControlName="address" (input)="checkInputs()" />
+                <input nbInput fullWidth type="text" placeholder="Country" formControlName="country" (input)="checkInputs()" />
+                <input nbInput fullWidth type="text" placeholder="Email" formControlName="email" (input)="checkInputs()" />
+                <input nbInput fullWidth type="text" placeholder="Phone" formControlName="phone" (input)="checkInputs()" />
+                <input nbInput fullWidth type="text" placeholder="Owner Name" formControlName="ownerName" (input)="checkInputs()" />
+              </div>
+
+              <div class="button-container">
+                <button nbButton status="primary" (click)="findByparameter()" [disabled]="searchButtonDisabled">Search</button>
+                <button nbButton status="success" (click)="onNewClick()">New</button>
+              </div>
+
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+
+        <nb-accordion multi="true">
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>Data Information</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <app-table-datasource [datas]="datas" [defaultColumns]="defaultColumnsInput"
+                (pageChange)="onPageChange($event)" (pageSizeChange)="onPageSizeChange($event)"
+                (deleteAction)="deleting($event)" [isdelelete]="isdelelete" [hasMorePages]="hasMorePagesT"
+                (editAction)="handleEditAction($event)" (loadMoreData)="finStoreProcess()"
+                (noData)="showNoDataMessage()">
+              </app-table-datasource>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+
+      </form>
+    </div>
+  </nb-layout-column>
+</nb-layout>

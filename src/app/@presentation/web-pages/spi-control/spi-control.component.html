@@ -1,0 +1,137 @@
+<nb-card>
+  <nb-card-body>
+
+    <!-- Header Superior (Contacto y Logo) -->
+    <header class="header-top">
+      <div class="logo-container">
+        <!-- RUTA LOCAL -->
+        <img src="assets/web-pages/spi-control/LOGO-SPI-CONTROL-2023-Oficial.png" alt="Logo SPI Control" class="logo">
+      </div>
+      <div class="contact-info-top">
+        <div class="contact-item"><nb-icon icon="pin-outline"></nb-icon><span>{{ contact.address }}</span></div>
+        <div class="contact-item"><nb-icon icon="phone-outline"></nb-icon><span>{{ contact.phone }}</span></div>
+        <div class="contact-item"><nb-icon icon="email-outline"></nb-icon><span>{{ contact.email }}</span></div>
+      </div>
+    </header>
+
+    <!-- Barra de Navegación Principal -->
+    <nav class="main-nav">
+      <a routerLink="inicio" routerLinkActive="active" class="nav-link">INICIO</a>
+      <a routerLink="spi" routerLinkActive="active" class="nav-link">SPI CONTROL</a>
+      <a routerLink="servicios" routerLinkActive="active" class="nav-link">SERVICIOS</a>
+   <a href="#" class="nav-link" 
+     [nbContextMenu]="productMenuItems" 
+     nbContextMenuTrigger="click"
+     (click)="$event.preventDefault()"> <!-- Prevenimos el '#' en la URL -->
+    PRODUCTOS <nb-icon icon="arrow-down-outline" pack="eva" style="font-size: 1rem;"></nb-icon>
+  </a>
+      <a routerLink="noticias" routerLinkActive="active" class="nav-link">NOTICIAS</a>
+      <a routerLink="contactos" routerLinkActive="active" class="nav-link">CONTACTOS</a>
+      <!-- ... resto de los enlaces ... -->
+    </nav>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+
+    <!-- SECCIÓN PROYECTOS (AHORA DINÁMICA) -->
+    <section class="projects-section">
+      <div class="projects-header">
+        <h2 class="section-title">Proyectos</h2>
+        <div class="project-nav-arrows">
+          <button nbButton ghost size="small"><nb-icon icon="arrow-ios-back-outline"></nb-icon></button>
+          <button nbButton ghost size="small"><nb-icon icon="arrow-ios-forward-outline"></nb-icon></button>
+        </div>
+      </div>
+      <nav class="projects-filter-nav">
+        <a href="#" class="filter-link active">All</a>
+        <a href="#" class="filter-link">Agriculture</a>
+        <a href="#" class="filter-link">Chemical</a>
+        <a href="#" class="filter-link">Energy</a>
+        <a href="#" class="filter-link">Industry</a>
+        <a href="#" class="filter-link">Manufacturing</a>
+      </nav>
+      <!-- GALERÍA DINÁMICA -->
+      <div class="projects-image-gallery">
+        @for (project of projects; track project.image) {
+        <div class="project-item">
+          <img [src]="project.image" [alt]="'Proyecto de ' + project.category">
+        </div>
+        }
+      </div>
+    </section>
+
+    <!-- SECCIÓN ALIADOS -->
+    <section class="allies-section">
+      <h2 class="section-title">NUESTROS ALIADOS</h2>
+      <p class="allies-description">No busques más, en SPICONTROL SAC, tenemos la solución para mejorar la operación de
+        tu empresa, ya que trabajamos de la mano con nuestros aliados estratégicos. Contáctanos hoy mismo y conoce cómo
+        podemos ayudarte a optimizar y mejorar tu empresa.</p>
+      <div class="allies-grid">
+        @for (ally of allies; track ally.name) {
+        <div class="ally-logo">
+          <img [src]="ally.logo" [alt]="'Logo de ' + ally.name">
+        </div>
+        }
+      </div>
+    </section>
+
+    <!-- SECCIÓN CALL TO ACTION (CTA) -->
+    <section class="cta-section">
+      <h2>Realiza tu consulta <strong>Aquí</strong></h2>
+      <button nbButton status="warning" size="large" class="cta-button">Contáctanos</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>Acerca de</h4>
+          <p>En SPICONTROL SAC, ofrecemos una amplia gama de servicios de instrumentación, electricidad y control para
+            ayudar a nuestros clientes a maximizar la eficiencia, la productividad y la rentabilidad de sus procesos.
+          </p>
+          <button nbButton outline status="primary" size="small">Ver más</button>
+        </div>
+        <div class="footer-column">
+          <h4>Nosotros</h4>
+          <ul>
+            <li><a href="#">Acerca de Nosotros</a></li>
+            <li><a href="#">Noticias</a></li>
+            <li><a href="#">Contáctanos</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Productos</h4>
+          <ul>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Productos de Instrumentación</a></li>
+            <li><a href="#">Productos de Automatización</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Empresa</h4>
+          <!-- RUTA LOCAL -->
+          <img src="assets/web-pages/spi-control/LOGO-SPI-CONTROL-2023-Oficial-BLANCO-ok.png"
+            alt="Logo SPI Control blanco" class="footer-logo">
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>SPICONTROL SAC - All Rights Reserved</p>
+        <p>Copyright © 2023</p>
+      </div>
+    </footer>
+
+    <!-- Iconos de Redes Sociales Flotantes -->
+    <div class="social-icons">
+      <a href="#" class="social-icon fb"><nb-icon icon="facebook-outline"></nb-icon></a>
+      <a href="#" class="social-icon tw"><nb-icon icon="twitter-outline"></nb-icon></a>
+      <a href="#" class="social-icon ln"><nb-icon icon="linkedin-outline"></nb-icon></a>
+      <a href="#" class="social-icon wa"><nb-icon icon="message-circle-outline"></nb-icon></a>
+      <a href="#" class="social-icon mail"><nb-icon icon="email-outline"></nb-icon></a>
+    </div>
+    <app-chatbot [context]="'spi-control-general'"></app-chatbot>
+     <a href="https://wa.me/51933418411" target="_blank" rel="noopener noreferrer" class="whatsapp-fab">
+      <nb-icon icon="message-circle-outline"></nb-icon>
+    </a>
+  </nb-card-body>
+</nb-card>

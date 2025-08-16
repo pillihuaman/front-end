@@ -1,0 +1,55 @@
+<div class="contact-page-wrapper">
+  <div class="contact-grid">
+    
+    <!-- Columna Izquierda: Información de Contacto -->
+    <div class="contact-info">
+      <div class="info-block">
+        <nb-icon icon="pin-outline"></nb-icon>
+        <div class="info-content">
+          <h4>Principal</h4>
+          <p><strong>{{ contactInfo.principal.city }}:</strong> {{ contactInfo.principal.address }}</p>
+        </div>
+      </div>
+      
+      <div class="info-block">
+        <nb-icon icon="pin-outline"></nb-icon>
+        <div class="info-content">
+          <h4>Sucursales</h4>
+          @for(sucursal of contactInfo.sucursales; track sucursal.city) {
+            <p><strong>{{ sucursal.city }}:</strong> {{ sucursal.address }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="info-block">
+        <nb-icon icon="phone-outline"></nb-icon>
+        <div class="info-content">
+          <h4>Celulares</h4>
+          @for(celular of contactInfo.celulares; track celular) {
+            <p>{{ celular }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="info-block">
+        <nb-icon icon="email-outline"></nb-icon>
+        <div class="info-content">
+          <h4>Correo</h4>
+          <p>{{ contactInfo.correo }}</p>
+        </div>
+      </div>
+    </div>
+
+<!-- Columna Derecha: Formulario (SIN el div amarillo) -->
+<div>
+  <div class="form-header">
+    <p>Nuestros Asesores están atentos</p>
+    <h2>Contáctanos</h2>
+  </div>
+  
+  <!-- El formulario reutilizable ahora se renderiza directamente -->
+<app-detail-contact [showInquirySection]="true"></app-detail-contact>
+</div>
+  </div>
+  
+</div>

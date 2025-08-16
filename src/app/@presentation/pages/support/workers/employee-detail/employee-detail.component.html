@@ -1,0 +1,35 @@
+<nb-card>
+  <nb-card-body>
+    <app-modal-header [title]="'Employee Detail'"></app-modal-header>
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+      <div class="form-container">
+        
+        <input nbInput type="text" placeholder="ID" required formControlName="id" readonly />
+
+        <input nbInput type="text" placeholder="Name" required formControlName="name" />
+
+        <input nbInput type="text" placeholder="Last Name" required formControlName="lastName" />
+
+        <div class="datepicker-group">
+          <input nbInput placeholder="Start Date" formControlName="startDate" [nbDatepicker]="startDate">
+          <nb-datepicker #startDate format="dd/MM/yyyy"></nb-datepicker>
+        </div>
+
+          <div class="datepicker-group">
+          <input nbInput placeholder="End Date" formControlName="finishDate" [nbDatepicker]="finishDate">
+          <nb-datepicker #finishDate format="dd/MM/yyyy"></nb-datepicker>
+        </div>
+
+        <input nbInput type="text" placeholder="Type Document" formControlName="typeDocument" />
+
+        <input nbInput type="number" placeholder="Salary Hours" formControlName="salaryHours" />
+
+        <input nbInput type="text" placeholder="Document" formControlName="document" />
+      </div>
+      <app-modal-footer class="button-container">
+        <button nbButton hero status="success" type="submit">Save</button>
+        <button nbButton hero status="danger" type="button" (click)="closeDialog()">Cancel</button>
+      </app-modal-footer>
+    </form>
+  </nb-card-body>
+</nb-card>

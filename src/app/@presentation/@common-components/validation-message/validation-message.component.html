@@ -1,0 +1,10 @@
+<div *ngIf="control">
+  <ng-container *ngIf="errorMessages">
+    <ng-container *ngIf="errorMessages">
+      <div *ngFor="let errorMessage of errorMessages">{{ errorMessage }}</div>
+    </ng-container>
+    <ng-template #singleMessage>
+      <div>{{ errorMessages }}</div>
+    </ng-template>
+  </ng-container>
+</div>

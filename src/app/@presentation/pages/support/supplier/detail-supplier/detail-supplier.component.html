@@ -1,0 +1,43 @@
+<nb-card>
+    <nb-card-header>Supplier Detail</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="supplierForm">
+        <div class="form-grid">
+          <input nbInput fullWidth placeholder="ID" formControlName="id" readonly />
+          <input nbInput fullWidth placeholder="Name" formControlName="name" />
+          <input nbInput fullWidth placeholder="RUC" formControlName="ruc" />
+          <input nbInput fullWidth placeholder="Address" formControlName="address" />
+          <input nbInput fullWidth placeholder="Phone" formControlName="phone" />
+          <input nbInput fullWidth placeholder="Email" formControlName="email" />
+        </div>
+  
+        <nb-checkbox formControlName="status">Active</nb-checkbox>
+  
+        <div class="contacts-section">
+          <div class="contacts-header">
+            <h4>Contacts</h4>
+            <button nbButton ghost size="small" (click)="addContact()" type="button">
+              <nb-icon icon="plus-outline"></nb-icon> Add Contact
+            </button>
+          </div>
+  
+          <div formArrayName="contacts">
+            <div *ngFor="let contact of contacts.controls; let i = index" [formGroupName]="i" class="contact-item">
+              <input nbInput fullWidth placeholder="Name" formControlName="name" />
+              <input nbInput fullWidth placeholder="Phone" formControlName="phone" />
+              <input nbInput fullWidth placeholder="Email" formControlName="email" />
+              <button nbButton status="danger" size="small" (click)="removeContact(i)" type="button">
+                <nb-icon icon="trash-2-outline"></nb-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        <div class="button-container">
+          <button nbButton status="primary" (click)="saveSupplier()">Save</button>
+          <button nbButton status="danger" (click)="returnToList()">Return</button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+  

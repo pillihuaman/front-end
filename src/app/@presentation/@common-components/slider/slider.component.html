@@ -1,0 +1,36 @@
+<div class="slider-container">
+  <!-- Capa 1: El track con las imágenes de fondo -->
+  <div class="slider-viewport">
+    <div class="slider-track" [style.transform]="transformStyle">
+      @for (item of items; track $index) {
+        <div class="slide">
+          <ng-container [ngTemplateOutlet]="itemTemplateRef" [ngTemplateOutletContext]="{ $implicit: item }"></ng-container>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Capa 2: Contenido superpuesto (el texto) -->
+  @if (overlayTemplateRef) {
+    <div class="slider-overlay-content">
+      <ng-container [ngTemplateOutlet]="overlayTemplateRef"></ng-container>
+    </div>
+  }
+
+  <!-- Capa 3: Los controles, con la estructura corregida y aislada -->
+  @if (items.length > 1) {
+    <!-- Contenedor para el botón 'prev' -->
+    <div class="slider-arrow prev">
+      <button nbButton ghost size="large" (click)="prev()">
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+      </button>
+    </div>
+    
+    <!-- Contenedor para el botón 'next' -->
+    <div class="slider-arrow next">
+      <button nbButton ghost size="large" (click)="next()">
+        <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+      </button>
+    </div>
+  }
+</div>

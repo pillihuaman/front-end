@@ -1,0 +1,12 @@
+<nb-layout>
+  <nb-layout-column>
+<nb-card>
+  <nb-card-header>
+    <nb-icon nbTooltip="Close" icon="close-outline" (click)="close()"></nb-icon>
+  </nb-card-header>
+  <nb-card-body>
+    <ng-container #contentContainer></ng-container> <!-- ✅ This will load EmployeeDetailComponent dynamically -->
+  </nb-card-body>
+</nb-card>
+</nb-layout-column>
+</nb-layout>

@@ -1,0 +1,351 @@
+:host {
+  display: block;
+  background: #f0f2f5; /* Un fondo base muy suave */
+}
+
+.surreal-container {
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ==================================================================== */
+/* ===== BANNER CON IMAGEN - CORREGIDO PARA MOSTRAR ROSTROS ===== */
+/* ==================================================================== */
+.platform-banner-surreal {
+  position: relative;
+  padding: 6rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 4rem;
+  background-image: url('https://res.cloudinary.com/dgxyw8pkn/image/upload/v1755228440/Google_AI_Studio_2025-08-15T01_37_54.690Z_u2oncm.png');
+  background-size: cover;
+  /* CORRECCIÓN CLAVE: 'center top' para mantener visible la parte superior de la imagen */
+  background-position: center center;
+  text-align: center;
+  color: white; /* Aseguramos que el color base del texto sea blanco */
+  overflow: hidden;
+}
+
+/* Overlay oscuro para legibilidad del texto */
+.platform-banner-surreal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* CORRECCIÓN: Estilos de texto aplicados directamente para garantizar legibilidad */
+.banner-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.banner-content p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+  color: white;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
+}
+
+
+/* Overlay oscuro para legibilidad del texto */
+.platform-banner-surreal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Overlay negro con 40% de opacidad */
+  z-index: 1;
+}
+
+/* Asegura que el contenido esté por encima del overlay */
+:host .banner-content {
+  position: relative;
+  z-index: 2;
+    color: nb-theme(text-basic-color); 
+}
+
+
+:host .banner-content h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+:host .banner-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+}
+
+/* ... (El resto de los estilos del banner y otros componentes se mantienen igual) ... */
+
+/* --- ESTILOS ORIGINALES DE LA GALERÍA DE PRODUCTOS (SIN CAMBIOS) --- */
+.product-gallery-surreal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+.product-card-surreal {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-surreal:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.image-container {
+  height: 280px; /* TAMAÑO DE IMAGEN MANTENIDO */
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+app-imagen-catch-information ::ng-deep img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card-surreal:hover app-imagen-catch-information ::ng-deep img {
+  transform: scale(1.1);
+}
+
+/* ... (El resto de los estilos de las tarjetas de producto se mantienen igual) ... */
+:host .product-info {
+
+  .product-name {
+    /* Usamos una variable de tema para el título para que se adapte bien */
+    color: nb-theme(text-basic-color); 
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .product-description {
+    /* Usamos un color de texto secundario para la descripción */
+    color: nb-theme(text-hint-color); 
+    font-size: 0.9rem;
+  }
+}
+.product-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+.product-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.product-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #3366ff;
+}
+.product-category {
+  background: #eef2ff;
+  color: #3366ff;
+  padding: 0.3rem 0.7rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+
+/* --- NUEVOS ESTILOS PARA LAS SECCIONES ADICIONALES --- */
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+    color: nb-theme(text-basic-color); /* <--- Color dinámico */
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
+  border-radius: 2px;
+}
+
+.new-section {
+  margin-top: 5rem; /* Espacio uniforme entre secciones */
+  margin-bottom: 5rem;
+}
+
+/* Carrusel de Destacados */
+.featured-carousel {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 0 -1rem;
+  scrollbar-width: thin;
+}
+.featured-carousel::-webkit-scrollbar { height: 8px; }
+.featured-carousel::-webkit-scrollbar-thumb {
+  background: #c9d0ff;
+  border-radius: 4px;
+}
+.featured-card {
+  flex: 0 0 280px;
+  height: 380px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  display:flex;
+  align-items: center;
+  padding: 1.5rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.featured-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* =================================================== */
+/* ===== AJUSTE DE VISIBILIDAD DE TEXTO (INICIO) ===== */
+/* =================================================== */
+
+.featured-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Gradiente más intenso para asegurar contraste */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 35%, transparent 70%);
+}
+
+
+:host .featured-info {
+
+  h3, .h3 {
+    color: white; /* Forzamos el color blanco para el título */
+    font-size: 1.5rem; /* Opcional: Reafirmamos nuestro tamaño de fuente */
+   // text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  p, .paragraph {
+    color: white; /* Forzamos el color blanco para el párrafo */
+    opacity: 0.9;
+    font-size: 0.9rem; /* Opcional: Reafirmamos nuestro tamaño de fuente */
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+}
+/* =================================================== */
+/* ===== AJUSTE DE VISIBILIDAD DE TEXTO (FIN) ===== */
+/* =================================================== */
+
+
+/* ... (El resto de los estilos del Footer y Botones Flotantes se mantienen igual) ... */
+
+
+/* ============================================= */
+/* ===== ESTILOS PARA EL FOOTER ===== */
+/* ============================================= */
+.surreal-footer {
+  background: #1a2138;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4rem 2rem 2rem;
+  border-radius: 20px;
+  margin-top: 5rem;
+}
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+.footer-column .footer-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+.footer-description {
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+/* ... (y el resto de estilos del footer) ... */
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+
+/* =================================================== */
+/* ===== ESTILOS PARA BOTONES FLOTANTES ===== */
+/* =================================================== */
+.floating-socials {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.social-button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+.social-button nb-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.social-button:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+.social-button.whatsapp { background-color: #25D366; }
+.social-button.facebook { background-color: #1877F2; }
+.social-button.tiktok { background: linear-gradient(45deg, #FF0050, #00F2EA); }
+.social-button.youtube { background-color: #FF0000; }

@@ -1,0 +1,89 @@
+<form [formGroup]="myForm">
+  <div class="form-row">
+    <!-- Product Selection -->
+    <div class="container">
+      <label for="productSelect">*Product</label>
+      <div class="form-group paddingObject col-sm-4">
+     
+          <nb-select
+            placeholder="Product"
+            formControlName="idProduct"
+            (selectedChange)="changeProduct($event)"
+          >
+            <nb-option
+              *ngFor="let prod of listProductByUser"
+              [value]="prod.idProduct"
+            >
+              {{ prod.name }}
+            </nb-option>
+          </nb-select>
+
+      </div>
+    </div>
+
+    <!-- Name Input -->
+    <div class="container">
+      <div class="form-group paddingObject col-sm-4">
+     
+          <label for="nameInput">Name</label>
+          <input nbInput type="text" formControlName="name" />
+
+      </div>
+    </div>
+
+    <!-- Description Textarea -->
+    <div class="container">
+      <div class="form-group paddingObject col-sm-4">
+     
+          <label for="descriptionInput">Description</label>
+          <textarea nbInput formControlName="description" cols="30" rows="5"></textarea>
+
+      </div>
+    </div>
+
+    <!-- Image Preview Section -->
+    <div *ngIf="filePath1" class="foto-editor-item buttonCloseMain">
+      <label class="buttonClose" (click)="close(1)">X</label>
+      <img [src]="filePath1" [alt]="myForm.value.name" class="tempImagen" />
+    </div>
+
+    <div *ngIf="filePath2" class="foto-editor-item buttonCloseMain">
+      <label class="buttonClose" (click)="close(2)">X</label>
+      <img [src]="filePath2" [alt]="myForm.value.name" class="tempImagen" />
+    </div>
+
+    <div *ngIf="filePath3" class="foto-editor-item buttonCloseMain">
+      <label class="buttonClose" (click)="close(3)">X</label>
+      <img [src]="filePath3" [alt]="myForm.value.name" class="tempImagen" />
+    </div>
+
+    <div *ngIf="filePath4" class="foto-editor-item buttonCloseMain">
+      <label class="buttonClose" (click)="close(4)">X</label>
+      <img [src]="filePath4" [alt]="myForm.value.name" class="tempImagen" />
+    </div>
+  </div>
+
+  <!-- File Upload -->
+  <div class="mb-3">
+    <label for="formFileSm" class="form-label">Attach Image</label>
+    <input
+      enctype="multipart/form-data"
+      class="form-control form-control-sm"
+      id="formFileSm"
+      type="file"
+      accept="image/*"
+      #inputFile
+      (change)="loadFile($event)"
+    />
+  </div>
+
+  <!-- Buttons -->
+  <div class="form-group paddingObject">
+    <div class="col-sm-10">
+      <button nbButton status="primary" (click)="save()">Register</button>
+    </div>
+    <div class="col-sm-2">
+      <button nbButton status="success" (click)="save()">Stock</button>
+    </div>
+  </div>
+</form>

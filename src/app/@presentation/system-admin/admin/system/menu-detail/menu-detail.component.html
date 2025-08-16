@@ -1,0 +1,44 @@
+<nb-card>
+    <nb-card-header>Menu Detail</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="menuForm">
+        <div class="form-grid">
+          <input nbInput fullWidth placeholder="ID" formControlName="id" readonly/>
+          <input nbInput fullWidth placeholder="Title" formControlName="title" />
+          <input nbInput fullWidth placeholder="Icon" formControlName="icon" />
+          <input nbInput fullWidth placeholder="URL" formControlName="url" />
+          <input nbInput fullWidth placeholder="Order" type="number" formControlName="order" />
+  
+          <!-- SYSTEM ID SELECT -->
+          <nb-select fullWidth placeholder="System" formControlName="systemId">
+            <nb-option *ngFor="let sys of systems" [value]="sys.systemId">
+              {{ sys.systemName }}
+            </nb-option>
+          </nb-select>
+  
+          <!-- PAGE ID SELECT -->
+          <nb-select fullWidth placeholder="Page" formControlName="pageId">
+            <nb-option *ngFor="let pg of pages" [value]="pg.id">
+              {{ pg.name }}
+            </nb-option>
+          </nb-select>
+  
+          <!-- PARENT MENU SELECT -->
+          <nb-select fullWidth placeholder="Parent Menu" formControlName="parentId">
+            <nb-option [value]="''">No Parent</nb-option>
+            <nb-option *ngFor="let pm of parentMenus" [value]="pm.id">
+              {{ pm.title }}
+            </nb-option>
+          </nb-select>
+        </div>
+  
+        <nb-checkbox formControlName="status">Active</nb-checkbox>
+  
+        <div class="button-container">
+          <button nbButton status="primary" (click)="saveMenu()">Save</button>
+          <button nbButton status="danger" (click)="returnMenu()">Return</button>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+  

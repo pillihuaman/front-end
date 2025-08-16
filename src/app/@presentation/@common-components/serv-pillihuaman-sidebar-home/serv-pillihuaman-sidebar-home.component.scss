@@ -1,0 +1,33 @@
+::ng-deep .customize {
+  background: #f0e5e5 !important;
+  position: static;
+  right: 0px;
+}
+
+
+.siderbar {
+  display: flex;
+  text-decoration: none;
+
+}
+
+.siderbar span {
+  padding: 0.2px;
+
+  padding-left: 2vh;
+
+
+
+}
+
+.siderbar:hover {
+  background-color: rgb(220, 220, 220);
+  ;
+  color: rgb(20, 69, 107);
+}
+
+::ng-deep .nb-theme-default a {
+  color: #6c6e74 !important;
+  text-decoration: none !important;
+
+}

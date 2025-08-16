@@ -1,0 +1,51 @@
+.no-border {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.modal-header {
+  border-bottom: none !important;
+  background: transparent !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px; /* Reduce el padding */
+}
+
+.modal-header h3 {
+  font-size: 1rem; /* Reduce el tamaño del título */
+  margin: 0;
+}
+
+.modal-header button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 2px; /* Reduce padding del botón */
+}
+
+.custom-modal {
+  width: 500px; /* Reduce el ancho */
+  max-width: 90vw;
+  height: auto;
+  max-height: 80vh; /* Reduce la altura máxima */
+  overflow: auto;
+  padding: 10px; /* Reduce el padding general */
+  background: var(--nb-background-basic);
+  border-radius: 6px; /* Reduce las esquinas */
+}
+
+@media (max-width: 768px) {
+  .custom-modal {
+    width: 85vw;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-modal {
+    width: 95vw;
+    padding: 5px;
+  }
+}

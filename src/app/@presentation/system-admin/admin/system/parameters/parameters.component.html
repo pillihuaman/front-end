@@ -1,0 +1,41 @@
+<form [formGroup]="myForm">
+  <div class="container">
+    <!-- ID Code (ReadOnly) -->
+    <div class="form-group col-sm-4">
+    
+        <input nbInput readonly type="text" placeholder="Id Code" [maxLength]="50" formControlName="idCode" />
+     
+    </div>
+
+    <!-- Parameter Name -->
+    <div class="form-group col-sm-4">
+    
+        <input nbInput type="text" placeholder="Parameter Name" [maxLength]="50" formControlName="name" />
+     
+    </div>
+
+    <!-- Detail -->
+    <div class="form-group col-sm-4">
+    
+        <input nbInput type="text" placeholder="Detail" [maxLength]="50" required formControlName="description" />
+     
+    </div>
+
+    <!-- Dynamic Form Array -->
+    <div class="form-group col-sm-4" formArrayName="parameterItems">
+      <div *ngFor="let item of parameterItems.controls; let i = index" class="d-flex align-items-center">
+        <input nbInput [formControlName]="i" (focus)="disableControl()" />
+        <nb-icon *ngIf="parameterItems.length > 1" icon="trash-2-outline" status="danger" (click)="removeInputControl(i)"></nb-icon>
+        <nb-icon icon="plus-circle-outline" status="success" (click)="addInputControl()"></nb-icon>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <br>
+    <div class="form-group col-sm-2 d-flex justify-content-between">
+      <button nbButton status="primary" (click)="save()">Save</button>
+      <button nbButton status="warning" (click)="clearControl()">Clear</button>
+      <app-router-button (click)="save()"></app-router-button>
+    </div>
+  </div>
+</form>

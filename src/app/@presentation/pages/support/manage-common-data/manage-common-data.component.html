@@ -1,0 +1,65 @@
+<nb-card>
+  <nb-card-header>
+    <app-modal-header title="Gestión de Configuración General (common_data)"></app-modal-header>
+  </nb-card-header>
+
+  <nb-card-body>
+    <!-- SECCIÓN PARA CARGAR CONFIGURACIÓN EXISTENTE -->
+    <div class="load-section form-grid">
+      <input #loadIdInput nbInput fullWidth placeholder="Ingrese ID para cargar (ej: SYSTEM_DEFAULTS)">
+      <button nbButton status="info" (click)="loadConfiguration(loadIdInput.value)" [disabled]="isLoading">
+        <nb-icon icon="download-outline"></nb-icon>
+        Cargar Configuración
+      </button>
+      <div *ngIf="isLoading" class="spinner-container">
+        <nb-spinner status="info"></nb-spinner>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- FORMULARIO PRINCIPAL PARA CREAR/ACTUALIZAR -->
+    <form [formGroup]="configForm" (ngSubmit)="saveConfiguration()">
+      <div class="form-grid">
+        <h5 class="full-width-field">Detalles de la Configuración</h5>
+
+        <nb-form-field>
+          <label>ID del Documento</label>
+          <input nbInput fullWidth formControlName="id" placeholder="ID único (ej: PRODUCTION_COSTS_V1)">
+          <ng-container *ngIf="configForm.get('id')?.invalid && configForm.get('id')?.touched">
+            <p class="caption status-danger">El ID es requerido.</p>
+          </ng-container>
+        </nb-form-field>
+
+        <nb-form-field>
+          <label>Tipo de Configuración</label>
+          <input nbInput fullWidth formControlName="configType" placeholder="Ej: SYSTEM_CONFIG, PRODUCTION_CONFIG">
+           <ng-container *ngIf="configForm.get('configType')?.invalid && configForm.get('configType')?.touched">
+            <p class="caption status-danger">El Tipo es requerido.</p>
+          </ng-container>
+        </nb-form-field>
+        
+        <nb-form-field class="full-width-field">
+          <label>Datos (en formato JSON)</label>
+          <textarea nbInput fullWidth rows="20" formControlName="dataJson" placeholder="Pega o escribe el contenido JSON aquí..."></textarea>
+          <ng-container *ngIf="configForm.get('dataJson')?.invalid && configForm.get('dataJson')?.touched">
+            <p class="caption status-danger" *ngIf="configForm.get('dataJson')?.errors?.['required']">
+              El campo de datos no puede estar vacío.
+            </p>
+            <p class="caption status-danger" *ngIf="configForm.get('dataJson')?.errors?.['jsonInvalid']">
+              El texto ingresado no es un formato JSON válido.
+            </p>
+          </ng-container>
+        </nb-form-field>
+      </div>
+      
+      <div class="button-container">
+        <button type="button" nbButton status="danger" (click)="returnToList()">Regresar</button>
+        <button type="submit" nbButton status="primary" [disabled]="configForm.invalid || isSubmitting" [nbSpinner]="isSubmitting">
+          <nb-icon icon="save-outline"></nb-icon>
+          Guardar Configuración
+        </button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

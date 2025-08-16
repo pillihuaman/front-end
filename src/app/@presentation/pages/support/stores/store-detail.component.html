@@ -1,0 +1,22 @@
+<nb-card class="form-container">
+  <nb-card-body>
+    <app-modal-header [title]="'Store Detail'"></app-modal-header>
+
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()" class="form-container">
+      <input nbInput type="text" placeholder="ID" formControlName="id" readonly class="form-group" />
+      <input nbInput type="text" placeholder="Name" formControlName="name" required class="form-group" />
+      <input nbInput type="text" placeholder="Address" formControlName="address" required class="form-group" />
+      <input nbInput type="text" placeholder="Country" formControlName="country" required class="form-group" />
+      <input nbInput type="email" placeholder="Email" formControlName="email" required class="form-group" />
+      <input nbInput type="text" placeholder="Phone" formControlName="phone" required class="form-group" />
+      <input nbInput type="text" placeholder="Owner Name" formControlName="ownerName" required class="form-group" />
+      <input nbInput type="text" placeholder="Status" formControlName="status" required class="form-group" />
+
+
+    <app-modal-footer class="button-container">
+      <button nbButton hero status="success" type="submit">Save</button>
+      <button nbButton hero status="danger" type="button" (click)="closeDialog()">Cancel</button>
+    </app-modal-footer>
+  </form>
+  </nb-card-body>
+</nb-card>

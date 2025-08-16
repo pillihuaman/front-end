@@ -1,0 +1,48 @@
+<nb-card>
+  <nb-card-header>Detalle del Ítem de Orden de Compra</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form">
+      <div class="form-grid">
+        <input
+          nbInput
+          fullWidth
+          placeholder="ID del Ítem"
+          formControlName="purchaseOrderItemId"
+          readonly
+        />
+        <input
+          nbInput
+          fullWidth
+          placeholder="ID de Orden de Compra"
+          formControlName="purchaseOrderId"
+        />
+        <input
+          nbInput
+          fullWidth
+          placeholder="ID del Producto"
+          formControlName="productId"
+        />
+        <input
+          nbInput
+          fullWidth
+          type="number"
+          placeholder="Cantidad Solicitada"
+          formControlName="quantityOrdered"
+        />
+        <input
+          nbInput
+          fullWidth
+          type="number"
+          step="0.01"
+          placeholder="Costo Unitario"
+          formControlName="unitCost"
+        />
+      </div>
+
+      <div class="button-container">
+        <button nbButton status="primary" (click)="save()">Guardar</button>
+        <button nbButton status="danger" (click)="return()">Regresar</button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

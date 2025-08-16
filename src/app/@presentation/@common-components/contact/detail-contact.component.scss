@@ -1,0 +1,25 @@
+// Archivo: src/app/pages/bussiness/contact/detail-contact/detail-contact.component.scss
+// (Copia y pega aquí el contenido del archivo .scss que me proporcionaste en el ejemplo)
+
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/default' as *;
+
+// ... todo el contenido del SCSS ...
+
+.d-flex.justify-content-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem; /* Standardizes the gap between buttons */
+  margin-top: 1.5rem;
+}
+
+// Estilo adicional para los botones de añadir/quitar
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.align-items-center {
+  align-items: center;
+}

@@ -1,0 +1,17 @@
+<div class="search-input-container" style="position: relative;">
+  <input nbInput type="text" placeholder="Buscar proveedor..."
+         [formControl]="searchControl"
+         (focus)="showDropdown = true"
+         (blur)="onBlur()"
+         (input)="onInputChange()" />
+
+  <ul *ngIf="showDropdown && filteredResults.length > 0"
+      class="autocomplete-list"
+      style="position: absolute; width: 100%; background: white; z-index: 1000; list-style: none; padding: 0; margin: 0; border: 1px solid #ccc;">
+    <li *ngFor="let item of filteredResults"
+        (mousedown)="onSelect(item)"
+        style="padding: 8px; cursor: pointer;">
+      {{ item.name }}
+    </li>
+  </ul>
+</div>

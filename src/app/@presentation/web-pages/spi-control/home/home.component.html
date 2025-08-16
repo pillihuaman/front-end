@@ -1,0 +1,77 @@
+<!-- En cualquiera de tus componentes, por ejemplo, spi-control.component.html -->
+<!-- Sección de Héroe con Slider de Fondo -->
+<section class="hero-section">
+  <app-slider [items]="heroSlides" [autoplay]="true" [autoplayInterval]="6000">
+
+    <!-- Plantilla 1: Para el fondo (esto ya lo tenías) -->
+    <ng-template #itemTemplate let-slide>
+      <div class="hero-slide-item">
+        <img [src]="slide.image" alt="Fondo de sección de héroe">
+      </div>
+    </ng-template>
+
+    <!-- Plantilla 2: ¡NUEVO! Proyectamos el texto del héroe DENTRO del slider -->
+    <ng-template #overlayTemplate>
+      <div class="hero-text">
+        <h1>Operación industrial eficiente y segura</h1>
+        <h2>SPICONTROL SAC</h2>
+        <p>Nuestros servicios de automatización y programación cumplen con normativas y estándares de calidad.</p>
+      </div>
+    </ng-template>
+
+  </app-slider>
+</section>
+
+    <!-- Sección de Introducción de Servicios -->
+    <section class="intro-section">
+      <div class="intro-content">
+        <h2>SERVICIOS DE PROYECTOS E INGENIERIA DE CONTROL SAC</h2>
+        <div class="intro-details">
+          <div class="intro-logo">
+            <!-- RUTA LOCAL -->
+            <img src="assets/web-pages/spi-control/LOGO-SPI-CONTROL-2023-Oficial.png" alt="Logo SPI Control">
+          </div>
+          <div class="intro-text">
+            <p>En SPICONTROL SAC, ofrecemos una amplia gama de servicios de instrumentación, electricidad y control para ayudar a nuestros clientes a maximizar la eficiencia, la productividad y la rentabilidad de sus procesos. Nuestro equipo altamente capacitado y con experiencia, junto con nuestras soluciones innovadoras y personalizadas, nos permiten satisfacer las necesidades de nuestros clientes y superar sus expectativas en términos de calidad y confiabilidad. Contacta con nosotros para obtener más información sobre nuestros servicios y cómo podemos ayudarte a mejorar tus operaciones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Servicios -->
+<section class="industry-services-section">
+  <!-- El título de esta sección es opcional, ya que en la imagen no aparece explícitamente -->
+  <!-- <h2 class="section-title">Industrias que Atendemos</h2> -->
+  <div class="industry-grid">
+    <!-- El @for itera sobre el array 'industryServices' que ya tienes en tu .ts -->
+    @for (service of industryServices; track service.title) {
+      <div class="industry-card">
+        <div class="card-icon">
+             <img [src]="service.icon" [alt]="'Icono de ' + service.title">
+          <!--   <nb-icon [icon]="service.icon"></nb-icon>-->
+        </div>
+        <h3 class="card-title">{{ service.title }}</h3>
+        <p class="card-description">{{ service.description }}</p>
+      </div>
+    }
+  </div>
+</section>
+    
+<!-- ========================================================== -->
+<!--     NUEVA SECCIÓN: PROYECTOS INDUSTRIALES                  -->
+<!-- ========================================================== -->
+<section class="industrial-projects-section">
+  <div class="project-content">
+    <div class="project-text">
+      <h2 class="section-title">PROYECTOS INDUSTRIALES</h2>
+      <p>
+        Con nuestros servicios de automatización, programación y diseño, garantizamos una operación más eficiente, segura y rentable de tu empresa. Buscamos cumplir con los estándares más altos y confiables en la industria, asegurando la calidad y confiabilidad de nuestros servicios.
+      </p>
+    </div>
+    <div class="project-image">
+      <!-- RUTA LOCAL -->
+      <img src="assets/web-pages/spi-control/manufacture-industry.png" alt="Proyectos Industriales">
+    </div>
+  </div>
+</section>
+

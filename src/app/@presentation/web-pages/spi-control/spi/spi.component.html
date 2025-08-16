@@ -1,0 +1,62 @@
+<!-- BANNER SUPERIOR DE LA PÁGINA -->
+<section class="page-banner">
+  <div class="banner-content">
+    <h1>Acerca de Nosotros</h1>
+  </div>
+</section>
+
+<!-- SECCIÓN DE INTRODUCCIÓN -->
+<section class="page-section about-intro">
+  <div class="section-container">
+    <div class="intro-logo">
+      <h2>SERVICIOS DE PROYECTOS E INGENIERIA DE CONTROL SAC</h2>
+      <img src="assets/web-pages/spi-control/LOGO-SPI-CONTROL-2023-Oficial.png" alt="Logo SPI Control">
+    </div>
+    <div class="intro-text">
+      <p>
+        En SPICONTROL SAC, ofrecemos una amplia gama de servicios de instrumentación, electricidad y control para ayudar a nuestros clientes a maximizar la eficiencia, la productividad y la rentabilidad de sus procesos. Nuestro equipo altamente capacitado y con experiencia, junto con nuestras soluciones innovadoras y personalizadas, nos permiten satisfacer las necesidades de nuestros clientes y superar sus expectativas en términos de calidad y confiabilidad. Contacta con nosotros para obtener más información sobre nuestros servicios y cómo podemos ayudarte a mejorar tus operaciones.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE MISIÓN Y VISIÓN -->
+<section class="page-section mission-vision">
+  <div class="section-container">
+    <div class="mission-item">
+      <div class="item-header">
+        <nb-icon icon="trending-up-outline"></nb-icon>
+        <h3>Misión</h3>
+      </div>
+      <p>
+        Suministrar productos y brindar servicios en automatización e instrumentación industrial confiable y de calidad, que satisfagan las necesidades y expectativas de nuestros clientes con innovación tecnológica, promover el desarrollo integral de nuestros colaboradores y clientes logrando la mejora continua de la industria peruana.
+      </p>
+    </div>
+    <div class="vision-item">
+      <div class="item-header">
+        <nb-icon icon="eye-outline"></nb-icon>
+        <h3>Visión</h3>
+      </div>
+      <p>
+        Ser una empresa líder en automatización e instrumentación industrial, reconocidos por nuestros clientes a nivel nacional e internacional por ofrecer y brindar las mejores soluciones en proyectos de ingeniería, así como ser ejemplo de gestión empresarial por la calidad del servicio ofrecido y de los equipos e instrumentos suministrados.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DE SERVICIOS Y LISTA -->
+<section class="page-section services-list-section">
+  <div class="section-container">
+    <div class="services-image">
+      <img src="https://res.cloudinary.com/dgxyw8pkn/image/upload/v1754881714/Google_AI_Studio_2025-08-11T03_07_24.933Z_gxreft.png" alt="Ingeniera industrial en planta">
+    </div>
+    <div class="services-list">
+      <h4>Nuestros servicios en: Electricidad, Instrumentación Industrial y Sistemas de Control, pueden aplicarse en una amplia gama de procesos e industrias, incluyendo:</h4>
+      <ul>
+        @for(industry of industriesList; track industry) {
+          <li><a href="#">{{ industry }}</a></li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

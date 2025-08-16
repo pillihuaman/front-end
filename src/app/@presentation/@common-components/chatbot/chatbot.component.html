@@ -1,0 +1,50 @@
+<div class="chatbot-container" [class.minimized]="isMinimized">
+  <!-- Botón flotante para abrir/cerrar -->
+  <button nbButton status="primary" shape="round" class="chat-toggle-button" (click)="toggleChat()">
+    <nb-icon [icon]="isMinimized ? 'message-circle-outline' : 'close-outline'"></nb-icon>
+  </button>
+
+  <!-- Ventana del Chat -->
+  <nb-card class="chat-window" *ngIf="!isMinimized">
+    <nb-card-header>
+      Asistente Virtual
+    </nb-card-header>
+    <nb-card-body #messageContainer class="message-container">
+      <div *ngFor="let msg of messages" class="message-wrapper">
+        <div class="message" [ngClass]="{'user-message': msg.author === 'user', 'bot-message': msg.author === 'bot'}">
+          <!-- Indicador de "escribiendo..." -->
+          <div *ngIf="msg.isLoading" class="typing-indicator">
+            <nb-spinner size="tiny"></nb-spinner>
+          </div>
+          <!-- Contenido del mensaje -->
+          <div *ngIf="!msg.isLoading" [innerHTML]="msg.text | safeHtml"></div>
+          <!-- Acciones/Botones sugeridos -->
+          <div *ngIf="msg.actions && msg.actions.length > 0" class="action-buttons">
+            <button *ngFor="let action of msg.actions" nbButton outline size="tiny" status="primary" (click)="handleActionClick(action)">
+              {{ action.label }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="input-area">
+        <input 
+          nbInput 
+          fullWidth 
+          placeholder="Escribe tu mensaje..." 
+          [(ngModel)]="userInput"
+          (keyup.enter)="sendMessage()"
+        >
+        <button nbButton status="primary" (click)="sendMessage()" [disabled]="!userInput.trim()">
+          <nb-icon icon="paper-plane-outline"></nb-icon>
+        </button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</div>
+
+<!-- Pipe para renderizar HTML de forma segura (necesario para formato) -->
+<ng-template #safeHtml let-html>
+  <div [innerHTML]="html"></div>
+</ng-template>

@@ -1,0 +1,115 @@
+::ng-deep .main-container {
+    width: 100%;
+    min-height: 100vh; // Ajuste para que el contenedor ocupe toda la altura de la pantalla
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ::ng-deep nb-layout-header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  ::ng-deep nb-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-left: auto; /* Empuja los elementos hacia la derecha */
+  }
+  
+  ::ng-deep nb-action {
+
+    font-size: 1.2rem; /* Asegura tamaño adecuado de los íconos */
+  }
+
+  ::ng-deep .colored-column-basic {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: transparent; // O el fondo que tú desees
+  min-height: 100vh; // Asegura que ocupe el alto completo de la pantalla
+  width: 100%;
+  box-sizing: border-box; // Asegura que el padding no afecte el ancho total
+}
+
+  
+  /* Diseño responsivo 
+  @media (max-width: 768px) {
+    ::ng-deep nb-layout-header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    ::ng-deep nb-actions {
+      justify-content: center;
+      width: 100%;
+    }
+  
+    ::ng-deep nb-sidebar {
+      width: 80px !important; /* Sidebar más pequeño en pantallas pequeñas 
+    }
+  }*/
+  ::ng-deep .search-container {
+    position: fixed;
+    top: 70px; /* Adjust this value based on header height */
+    right: 20px;
+    width: 300px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  ::ng-deep .search-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  ::ng-deep .search-container button {
+    width: 100%;
+  }
+
+
+  ::ng-deep nb-sidebar.menu-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    max-width: 80%;
+    z-index: 1000;
+
+    backdrop-filter: none !important; /* Sin desenfoque */
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  /* Responsive para móviles */
+  @media (max-width: 768px) {
+    ::ng-deep nb-sidebar.menu-sidebar {
+      width: 80%; /* Sidebar ocupará el 80% de la pantalla en móviles */
+      max-width: 300px; /* Limita el ancho máximo */
+    }
+  }
+  
+  /* Para que las etiquetas de menú se vean mejor */
+  ::ng-deep nb-menu {
+    background: local; /* que el menu no tenga otro fondo raro */
+    color: var(--nb-text-basic-color); /* texto visible */
+  }
+  
+  ::ng-deep nb-menu-item {
+    color: var(--nb-text-basic-color); /* texto de cada item */
+  }
+  
+  /* Opcional: mejorar efecto hover de items de menú */
+  ::ng-deep nb-menu-item:hover {
+    background: var(--nb-theme-primary-color); /* color de fondo al pasar el mouse */
+    color: var(--nb-text-control-color); /* texto blanco sobre el hover */
+  }
+  
+
+  

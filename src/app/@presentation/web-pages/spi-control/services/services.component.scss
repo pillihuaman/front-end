@@ -1,0 +1,97 @@
+:host {
+  --primary-color: #0d7b8a;
+  --dark-text: #2c3e50;
+  --text-color: #555;
+}
+
+/* --- Estilos del Banner Superior (Reutilizados para consistencia) --- */
+.page-banner {
+  position: relative;
+  padding: 6rem 2rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Imagen de fondo para el banner */
+  background-image: url('https://res.cloudinary.com/dgxyw8pkn/image/upload/v1754881714/Google_AI_Studio_2025-08-11T02_51_14.281Z_t8zper.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.page-banner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+}
+
+.breadcrumbs {
+  margin-top: 0.5rem;
+  opacity: 0.9;
+  color: white;
+}
+
+/* --- Estilos Generales de Sección --- */
+.page-section {
+  padding: 4rem 2rem;
+  background-color: white;
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  align-items: center;
+}
+
+/* --- Estilos Específicos para el Contenido de Servicios --- */
+.services-text h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  /* Efecto de línea decorativa debajo del título */
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--primary-color);
+  display: inline-block; /* Asegura que el borde solo ocupe el ancho del texto */
+}
+
+.services-text p {
+  line-height: 1.8;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.services-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* --- Ajustes de Responsividad --- */
+@media (max-width: 992px) {
+  .services-text h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-content h1 {
+    font-size: 2.5rem;
+  }
+}

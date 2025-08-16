@@ -1,0 +1,70 @@
+/* modal.component.scss */
+
+:host {
+  display: block; /* Ensure the component behaves as a block element */
+}
+
+/* Style the modal container */
+nb-card {
+  max-width: 400px; /* Set maximum width */
+  margin: 0 auto; /* Center the modal horizontally */
+}
+
+/* Style the modal header */
+.header {
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the icon horizontally */
+  align-items: center; /* Center the icon vertically */
+  background-color: #e5eaf8; /* Set background color */
+  color: white; /* Set text color */
+}
+
+/* Style the icon container */
+.icon-container {
+  font-size: 24px; /* Set icon size */
+  margin-right: 10px; /* Add some margin */
+}
+
+/* Style the modal body */
+nb-card-body {
+  padding: 20px; /* Add some padding */
+}
+
+/* Style the modal footer */
+nb-card-footer {
+  display: flex; /* Use flexbox for footer buttons */
+  justify-content: space-between; /* Space buttons evenly */
+}
+
+/* Style the buttons */
+button {
+  padding: 8px 16px; /* Add some padding */
+  border-radius: 4px; /* Add border radius */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  width: 100px; /* Set fixed width for buttons */
+}
+
+button.primary {
+  background-color: #3366ff; ; /* Set primary button color */
+  color: white; /* Set text color */
+}
+
+button.danger {
+  background-color: #f44336; /* Set danger button color */
+  color: white; /* Set text color */
+}
+.icon {
+  font-size: 60px; /* Adjust the font size to increase the icon size */
+}
+.warning-icon {
+  color: orange; /* Example color for warning */
+}
+
+.info-icon {
+  color: blue; /* Example color for info */
+}
+
+.question-icon {
+  color: gray; /* Example color for question */
+}
+

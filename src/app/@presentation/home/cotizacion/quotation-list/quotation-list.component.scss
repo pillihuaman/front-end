@@ -1,0 +1,23 @@
+.form-container {
+  width: 100%;
+}
+
+.form-grid {
+  display: grid;
+  // Crea columnas automáticas, cada una con un mínimo de 250px
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px; // Espacio entre los inputs
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px; // Espacio sobre los botones
+  flex-wrap: wrap; // Permite que los botones pasen a la siguiente línea en pantallas pequeñas
+}
+
+// Para hacer la tabla un poco más responsive en el acordeón
+:host ::ng-deep .nb-accordion-item-body {
+  padding: 1rem;
+}

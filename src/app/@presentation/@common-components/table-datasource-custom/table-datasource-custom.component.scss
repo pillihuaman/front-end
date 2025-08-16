@@ -1,0 +1,77 @@
+button[nbTreeGridRowToggle] {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+  
+  .search-label {
+    display: block;
+  }
+  .search-input {
+    margin-bottom: 1rem;
+  }
+  
+  .nb-tree-grid {
+    height: auto;
+    width: auto;
+  
+  }
+  .nb-tree-grid-header {
+    height: auto;
+    width: auto;
+  
+  }
+  .header {
+    text-align: center;
+    background-color: rgb(20, 133, 185);
+    color: aliceblue;
+  }
+  
+  /* table-datasource.component.scss */
+  
+  /* ... (previous styles) */
+  
+  /* Custom Actions Column */
+  th.nbTreeGridHeaderCell[ng-reflect-nbTreeGridColumnDef='acciones'],
+  td.nbTreeGridCell[ng-reflect-nbTreeGridColumnDef='acciones'] {
+    width: 10%;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Button Styles */
+  button[nbButton] {
+    margin-right: 0.5rem;
+    font-size: 0.5rem; /* Adjust the font size as needed */
+  }
+  
+  
+  /* Responsive Styling */
+  @media screen and (max-width: 600px) {
+    th.nbTreeGridHeaderCell[ng-reflect-nbTreeGridColumnDef='acciones'],
+    td.nbTreeGridCell[ng-reflect-nbTreeGridColumnDef='acciones'] {
+      width: 100%;
+    }
+  
+    /* Ensure buttons are displayed in a single line */
+    button[nbButton] {
+      display: block;
+      margin-bottom: 0.5rem; /* Add some space between buttons */
+    }
+  }
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px; /* Adjust the margin as needed */
+  }
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+  }
+  
+  .pagination button {
+    margin: 0 5px; /* Adjust the margin as needed */
+  }
+  

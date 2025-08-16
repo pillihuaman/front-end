@@ -1,0 +1,53 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .contacts-section {
+    margin-top: 24px;
+  }
+  
+  .contacts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .contact-item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 60px;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  @media (max-width: 1024px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .contact-item {
+      grid-template-columns: 1fr 1fr 1fr 60px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    .contact-item {
+      grid-template-columns: 1fr;
+      button {
+        width: 100%;
+      }
+    }
+  }
+  

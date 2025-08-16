@@ -1,0 +1,55 @@
+<nb-layout>
+   Sidebar con menú dinámico 
+<nb-sidebar tag="menu-barapp" 
+            state="collapsed" 
+            class="menu-sidebar" 
+            overlay 
+            mode="overlay"> 
+  <nb-menu [items]="menuTree"></nb-menu>
+</nb-sidebar>
+
+
+
+  <!-- Header principal -->
+  <nb-layout-header fixed class="main-header">
+    <a href="#" (click)="toggle()" class="content">
+      <span class="material-icons">format_list_bulleted</span>
+    </a>
+
+    <nb-actions class="header-actions">
+      <nb-action>
+        <select nbSelect [(ngModel)]="selectedTheme" (change)="changeTheme(selectedTheme)">
+          <option *ngFor="let theme of themes" [value]="theme">
+            {{ theme | titlecase }}
+          </option>
+        </select>
+      </nb-action>
+      <nb-action icon="home-outline" (click)="goHome()" nbTooltip="Home"></nb-action>
+      <nb-action icon="search-outline" (click)="onFind()" nbTooltip="Find"></nb-action>
+  
+      <nb-action icon="log-in-outline"
+           nbButton
+           status="success"
+           *ngIf="!showMenu"
+           (click)="onLogin()"
+           nbTooltip="Log in">
+</nb-action>
+
+<nb-action icon="log-out-outline"
+           nbButton
+           status="danger"
+           *ngIf="showMenu"
+           (click)="onLogout()"
+           nbTooltip="Cerrar sesión">
+</nb-action>
+
+
+    </nb-actions>
+  </nb-layout-header>
+
+  <!-- Main Content -->
+  <nb-layout-column class="colored-column-basic" (click)="toggleout()">
+    <router-outlet></router-outlet>
+      <app-serv-pillihuaman-footer-home></app-serv-pillihuaman-footer-home>
+  </nb-layout-column>
+</nb-layout>

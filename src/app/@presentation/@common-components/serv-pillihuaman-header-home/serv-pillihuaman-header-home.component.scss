@@ -1,0 +1,19 @@
+@use 'bootstrap/scss/mixins/breakpoints' as *;
+@use '@nebular/theme/styles/global/breakpoints' as *;
+@use '../../@theme/styles/themes' as *;
+
+@include nb-install-component() {
+  display: flex;
+  width: 100%;
+
+  .logo-container {
+    cursor: pointer;
+  }
+
+  background-color: red !important;
+}
+
+
+.text-primary {
+  color: #0D88BC !important;
+}

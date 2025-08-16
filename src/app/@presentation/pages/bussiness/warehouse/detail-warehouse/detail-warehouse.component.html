@@ -1,0 +1,152 @@
+<nb-card>
+  <nb-card-header class="d-flex justify-content-between align-items-center">
+    <span>{{ isEditMode ? 'Edit Warehouse' : 'New Warehouse' }}</span>
+    <button nbButton ghost status="primary" (click)="returnToList()">
+      <nb-icon icon="arrow-back-outline"></nb-icon>
+      Return to List
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="warehouseForm" (ngSubmit)="saveWarehouse()">
+      <div class="row">
+
+        <!-- Warehouse Identification -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="warehouseCode" class="label">Warehouse Code</label>
+            <input id="warehouseCode" nbInput fullWidth placeholder="e.g., WH-101" formControlName="warehouseCode">
+            <!-- Validation messages remain the same -->
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="type" class="label">Type</label>
+            <!-- UPDATED: Using nb-select -->
+            <nb-select fullWidth placeholder="Select Type" formControlName="type">
+              <nb-option *ngFor="let type of warehouseTypes" [value]="type">{{ type }}</nb-option>
+            </nb-select>
+            <!-- Validation messages remain the same -->
+          </div>
+        </div>
+
+        <!-- Capacity and Status -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="capacity" class="label">Capacity</label>
+            <input type="number" id="capacity" nbInput fullWidth placeholder="e.g., 10000" formControlName="capacity">
+            <!-- Validation messages remain the same -->
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="capacityUnit" class="label">Capacity Unit</label>
+            <!-- UPDATED: Using nb-select -->
+            <nb-select fullWidth placeholder="Select Unit" formControlName="capacityUnit">
+              <nb-option *ngFor="let unit of capacityUnits" [value]="unit">{{ unit }}</nb-option>
+            </nb-select>
+            <!-- Validation messages remain the same -->
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="operationalStatus" class="label">Operational Status</label>
+            <!-- UPDATED: Using nb-select -->
+            <nb-select fullWidth placeholder="Select Status" formControlName="operationalStatus">
+              <nb-option *ngFor="let status of operationalStatuses" [value]="status">{{ status }}</nb-option>
+            </nb-select>
+            <!-- Validation messages remain the same -->
+          </div>
+        </div>
+
+        <!-- Address Information -->
+        <div class="col-md-12 d-flex justify-content-between align-items-center">
+          <div class="section-header">
+            <hr>
+            <h5>Address</h5>
+          </div>
+          <!-- UPDATED: Button to trigger modal -->
+          <button type="button" nbButton status="info" size="small" (click)="openAddressModal()">
+            <nb-icon icon="search-outline"></nb-icon>
+            Find Address
+          </button>
+        </div>
+
+        <!-- Address fields are now disabled and populated by the modal -->
+        <div class="col-md-6">
+          <div class="form-group"><label class="label">Street Address</label><input nbInput fullWidth
+              formControlName="street"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group"><label class="label">Address Line 2</label><input nbInput fullWidth
+              formControlName="addressLine2"></div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group"><label class="label">City</label><input nbInput fullWidth formControlName="city">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group"><label class="label">State / Province</label><input nbInput fullWidth
+              formControlName="state"></div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group"><label class="label">Postal Code</label><input nbInput fullWidth
+              formControlName="postalCode"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group"><label class="label">Country</label><input nbInput fullWidth
+              formControlName="country"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group"><label class="label">Dock Doors (Optional)</label><input type="number" nbInput
+              fullWidth formControlName="dockDoors"></div>
+        </div>
+
+        <!-- Contact & Manager -->
+        <div class="col-md-12">
+          <hr>
+          <h5>Contact & Management</h5>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group"><label class="label">Main Phone Number</label><input nbInput fullWidth
+              formControlName="mainPhoneNumber"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group"><label class="label">Main Email</label><input type="email" nbInput fullWidth
+              formControlName="mainEmail"></div>
+        </div>
+
+        <!-- UPDATED: Manager Autocomplete -->
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="managerName" class="label">Manager</label>
+            <input type="text" nbInput fullWidth placeholder="Type to search for a manager..." id="managerName"
+              [nbAutocomplete]="auto" formControlName="managerName">
+
+            <nb-autocomplete #auto (selectedChange)="onManagerSelected($event)">
+              <nb-option *ngFor="let manager of filteredManagers$ | async" [value]="manager">
+                {{ manager.name }} ({{ manager.employeeId }})
+              </nb-option>
+            </nb-autocomplete>
+            <!-- Validation can be put on the hidden managerId control -->
+            <ng-container *ngIf="warehouseForm.get('managerId')?.invalid && warehouseForm.get('managerId')?.touched">
+              <p class="caption status-danger">Manager is required.</p>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button type="button" nbButton status="basic" (click)="returnToList()">Cancel</button>
+        <button type="submit" nbButton status="primary"
+          [disabled]="warehouseForm.invalid || (isEditMode && warehouseForm.pristine)">
+          {{ isEditMode ? 'Update' : 'Save' }} Warehouse
+        </button>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

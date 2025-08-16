@@ -1,0 +1,24 @@
+<nb-card>
+    <nb-card-header>System Detail</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="systemForm">
+        <div class="form-grid">
+            <input nbInput fullWidth placeholder="ID" formControlName="id" readonly />
+          <input nbInput fullWidth placeholder="Name" formControlName="name" />
+          <input nbInput fullWidth placeholder="Description" formControlName="description" />
+          <input nbInput fullWidth placeholder="Icon" formControlName="icon" />
+          <input nbInput fullWidth type="number" placeholder="Order" formControlName="order" />
+          <nb-checkbox formControlName="status">Active</nb-checkbox>
+        </div>
+  
+
+  
+        <div class="button-container">
+          <button nbButton status="primary" (click)="saveSystem()">Save</button>
+          <button nbButton status="danger" (click)="returnSystem()">Return</button>
+
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+  

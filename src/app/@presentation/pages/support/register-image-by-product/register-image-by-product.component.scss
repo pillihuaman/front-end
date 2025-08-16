@@ -1,0 +1,40 @@
+.tempImagen {
+  width: 100%;
+  max-height: 100%;
+  border-radius: 15px;
+}
+
+.foto-editor {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.foto-editor-item {
+  font-size: 4em;
+  text-align: center;
+}
+.foto-editor > .foto-editor-item:nth-child(2) {
+  color: hotpink;
+}
+
+@media only screen and (max-width: 800px) {
+  .foto-editor {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.buttonCloseMain {
+  font-size: x-large;
+  position: relative;
+}
+
+.buttonClose {
+  font-size: x-large;
+  position: absolute;
+  top: 0%;
+  left: 93%;
+  color: red;
+}
+.contener {
+  padding: 12px;
+}

@@ -1,0 +1,79 @@
+<div class="form-container">
+  <form [formGroup]="warehouseForm" (ngSubmit)="findByparameter()">
+    <nb-accordion>
+      <nb-accordion-item expanded="true">
+        <nb-accordion-item-header>Filtros de Búsqueda de Almacenes</nb-accordion-item-header>
+        <nb-accordion-item-body>
+
+          <!-- Fila de campos de búsqueda -->
+          <div class="form-grid">
+
+            <!-- Campo: Código del Almacén -->
+            <div class="form-group">
+              <label for="warehouseCode" class="label">Código del Almacén</label>
+              <input id="warehouseCode" nbInput fullWidth placeholder="Ej: WH-001" formControlName="warehouseCode" />
+            </div>
+
+            <!-- Campo: Tipo de Almacén (Selector) -->
+            <div class="form-group">
+              <label for="type" class="label">Tipo de Almacén</label>
+              <nb-select fullWidth id="type" formControlName="type">
+                <!-- Opción vacía -->
+                <nb-option [value]="null">Todos los tipos</nb-option>
+                <!-- Opciones reales -->
+                <nb-option *ngFor="let type of warehouseTypes" [value]="type">{{ type }}</nb-option>
+              </nb-select>
+            </div>
+
+            <!-- Campo: Estado Operativo -->
+            <div class="form-group">
+              <label for="operationalStatus" class="label">Estado Operativo</label>
+              <nb-select fullWidth id="operationalStatus" formControlName="operationalStatus">
+                <!-- Opción vacía -->
+                <nb-option [value]="null">Cualquier estado</nb-option>
+                <!-- Opciones reales -->
+                <nb-option *ngFor="let status of operationalStatuses" [value]="status">{{ status }}</nb-option>
+              </nb-select>
+            </div>
+
+            <!-- Campo: Ciudad -->
+            <div class="form-group">
+              <label for="city" class="label">Ciudad</label>
+              <input id="city" nbInput fullWidth placeholder="Ej: Lima" formControlName="city" />
+            </div>
+
+            <!-- Campo: País -->
+            <div class="form-group">
+              <label for="country" class="label">País</label>
+              <input id="country" nbInput fullWidth placeholder="Ej: Perú" formControlName="country" />
+            </div>
+
+          </div>
+
+          <!-- Fila de botones de acción -->
+          <div class="button-container">
+            <button nbButton status="primary" type="submit">
+              <nb-icon icon="search-outline"></nb-icon>
+              Buscar
+            </button>
+            <button nbButton status="success" type="button" (click)="onNew()">
+              <nb-icon icon="plus-outline"></nb-icon>
+              Nuevo Almacén
+            </button>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+
+    <nb-accordion>
+      <nb-accordion-item expanded="true">
+        <nb-accordion-item-header>Resultados</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <app-table-datasource [datas]="results" [defaultColumns]="defaultColumnsInput"
+            (editAction)="handleEditAction($event)" (deleteAction)="deleting($event)" [hasMorePages]="hasMorePagesT"
+            (loadMoreData)="loadData()" (noData)="showNoDataMessage()"></app-table-datasource>
+        </nb-accordion-item-body>WW
+      </nb-accordion-item>
+    </nb-accordion>
+  </form>
+</div>

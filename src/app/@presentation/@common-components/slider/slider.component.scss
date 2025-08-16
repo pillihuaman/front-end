@@ -1,0 +1,90 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-viewport {
+  position: absolute;
+  top: 0; left: 0;
+  overflow: hidden;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.slider-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-overlay-content {
+  position: relative;
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 
+ * ESTILOS FINALES PARA LOS BOTONES
+ * Se aplica a los divs contenedores para aislar los botones de Nebular.
+*/
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  border-radius: 50%; /* Hace los fondos circulares */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 48px;  /* Tamaño fijo */
+  height: 48px; /* Tamaño fijo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Estilo para el botón de "Anterior" */
+  &.prev {
+    left: 24px;
+    background-color: rgba(44, 62, 80, 0.4); /* Fondo oscuro semi-transparente */
+  }
+
+  /* Estilo para el botón de "Siguiente" */
+  &.next {
+    right: 24px;
+    background-color: rgba(13, 123, 138, 0.6); /* Fondo de color primario semi-transparente */
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+}
+
+/* Ajustes para el botón de Nebular que está dentro */
+.slider-arrow button {
+  padding: 0;
+  line-height: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-arrow button nb-icon {
+  font-size: 2rem;
+  color: white;
+}

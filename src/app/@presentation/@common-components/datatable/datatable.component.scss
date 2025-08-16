@@ -1,0 +1,40 @@
+/* Add general styles for the table */
+.mat-elevation-z8 {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 16px;
+    border-collapse: collapse;
+  }
+  
+  /* Style the header row */
+  .mat-header-row {
+    background-color: #f0f0f0;
+  }
+  
+  /* Style the data rows */
+  .mat-row {
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Style the "Actions" column header */
+  .mat-header-cell[matColumnDef="actions"],
+  .mat-cell[matColumnDef="actions"] {
+    text-align: center;
+  }
+  
+  /* Style the action buttons in the "Actions" column */
+  .mat-icon-button {
+    margin: 0 4px;
+    cursor: pointer;
+  }
+  
+  /* Style the edit button */
+  .mat-icon-button.edit-button {
+    color: #3498db;
+  }
+  
+  /* Style the delete button */
+  .mat-icon-button.delete-button {
+    color: #e74c3c;
+  }
+  

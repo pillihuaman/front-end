@@ -1,0 +1,27 @@
+{
+  "client_id": "admin",
+  "client_secret": "123456",
+  "aplicacion_id": 5,
+  "roles": {
+    "admin_servir": 24,
+    "admin_entidad": 25,
+    "gestor_orh": 27,
+    "especialista": 105,
+    "configurador": 28
+  },
+  "control":[
+    {
+  "objectId":"",
+  "idMenu":"",
+  "idSystem":"",
+  "idPage":"",
+  "description":"",
+  "icono":"",
+  "iconClass":"",
+  "status":"",
+  "styleClass":"",
+  "id_user":"",
+  "text":""
+    }
+  ]
+}

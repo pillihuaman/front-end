@@ -1,0 +1,58 @@
+<nb-layout>
+  <nb-layout-column>
+    <div class="form-container">
+      <form [formGroup]="employeRequestForm">
+        <nb-accordion multi="true">
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              Search Information
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+
+              <div class="form-grid">
+                <input nbInput fullWidth type="text" placeholder="ID" formControlName="idToFind"
+                  (input)="checkInputs()" />
+                <input nbInput fullWidth type="text" placeholder="Name" formControlName="nameToFind"
+                  (input)="checkInputs()" />
+
+                <input nbInput fullWidth type="text" placeholder="Last Name" formControlName="lastNameToFind"
+                  (input)="checkInputs()" />
+
+                <input nbInput fullWidth type="text" placeholder="Document" formControlName="documentToFind"
+                  (input)="checkInputs()" />
+              </div>
+              <div class="button-container">
+                <button nbButton status="primary" (click)="findByparameter()" [disabled]="searchButtonDisabled">
+                  Search
+                </button>
+                <button nbButton status="success" (click)="onNewClick()">
+                  New
+                </button>
+              </div>
+
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+        <nb-accordion multi="true">
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              Data Information
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <app-table-datasource [datas]="datas" [defaultColumns]="defaultColumnsInput"
+                (pageChange)="onPageChange($event)" (pageSizeChange)="onPageSizeChange($event)"
+                (deleteAction)="deleting($event)" 
+                [isdelelete]="isdelelete" [hasMorePages]="hasMorePagesT"
+                (editAction)="handleEditicionAction($event)" [typeOfSearch]="typeOfSearch"
+                (loadMoreData)="findEmproyeeProcess()"
+                (noData)="showNoDataMessage()"
+                >
+              </app-table-datasource>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+
+      </form>
+    </div>
+  </nb-layout-column>
+</nb-layout>

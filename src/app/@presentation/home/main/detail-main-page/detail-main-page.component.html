@@ -1,0 +1,159 @@
+<nb-card>
+  <nb-card-header>Galería de Imágenes de Productos</nb-card-header>
+  <nb-card-body>
+    <ng-container *ngIf="productData">
+
+      <div class="zoom-modal" *ngIf="zoomed" (click)="zoomed = false">
+        <img [src]="colru?.imageSrc" class="zoomed-image" [alt]="productData.respProduct?.name" />
+      </div>
+
+      <div class="product-detail-container">
+        <div class="image-gallery">
+          <div class="thumbnails-column">
+            <img *ngFor="let img of lstim?.lstCorouseImages" [src]="img.imageSrc" class="thumbnail"
+              [class.selected]="colru?.imagetoken === img.imagetoken" (click)="changeFothoDetail(img)"
+              [alt]="img.imageAlt" />
+          </div>
+        </div>
+
+        <div class="main-image-column">
+          <img [src]="colru?.imageSrc" class="main-image" [alt]="colru?.imageAlt" (click)="zoomed = true" />
+          <button class="nav-btn left" (click)="prevImage()">‹</button>
+          <button class="nav-btn right" (click)="nextImage()">›</button>
+        </div>
+
+        <div class="product-info-column">
+          <h1>{{ productData.respProduct?.name }}</h1>
+          <div class="tags-section" *ngIf="productData.respProduct?.tags?.length">
+            <label class="tag-label">Etiquetas:</label>
+            <div class="tag-list">
+              <span *ngFor="let tag of productData.respProduct?.tags" class="tag-badge">{{ tag }}</span>
+            </div>
+          </div>
+
+          <div class="product-meta">
+            <span>
+              <nb-icon icon="star" pack="eva" class="star-icon"></nb-icon> {{ dummyRating }}
+            </span>
+            <span class="separator">|</span>
+            <span>{{ dummyReviewsCount }} vendidos</span>
+          </div>
+
+          <div class="price-section">
+            <span class="current-price">{{ productData.respProduct?.pricing?.currency }} {{ productData.respProduct?.pricing?.sellingPrice }}</span>
+            <span class="original-price"></span>
+            <span class="discount"></span>
+          </div>
+
+          <div class="additional-pricing-section">
+            <div class="additional-pricing-section" *ngIf="productData.respProduct?.quantityPricing?.length">
+              <div class="price-item" *ngFor="let qp of productData.respProduct?.quantityPricing">
+                <nb-icon icon="cube-outline" pack="eva"></nb-icon>
+                <div class="price-text">
+                  <strong>{{ qp.description }} ({{ qp.size }}):</strong>
+                  <span>S/ {{ qp.unitPrice }} c/u desde {{ qp.minQuantity }} unidades</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="shipping-info-banner">
+            <nb-icon icon="car-outline" pack="eva"></nb-icon>
+            Envío a todo el Perú
+          </div>
+
+          <div class="selector-section">
+            <label>Tamaño</label>
+            <div class="size-options">
+              <button *ngFor="let size of sizes" class="size-option" [class.selected]="size === selectedSize"
+                (click)="selectSize(size)">
+                {{ size }}
+              </button>
+            </div>
+          </div>
+
+          <div class="selector-section">
+            <label>Cantidad</label>
+            <div class="quantity-selector">
+              <button (click)="changeQuantity(-1)" [disabled]="quantity <= 1">-</button>
+              <span>{{ quantity }}</span>
+              <button (click)="changeQuantity(1)">+</button>
+            </div>
+          </div>
+
+          <a nbButton status="success" fullWidth class="action-btn" [href]="getWhatsAppLink()" target="_blank">
+            <nb-icon icon="paper-plane-outline" pack="eva"></nb-icon>
+            Pedir por WhatsApp
+          </a>
+
+          <div class="additional-info">
+            <div class="info-item">
+              <nb-icon icon="shield-outline" pack="eva"></nb-icon>
+              <span>Pago Contra Entrega</span>
+            </div>
+            <div class="info-item">
+              <nb-icon icon="checkmark-circle-2-outline" pack="eva"></nb-icon>
+              <span>Compra 100% segura</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-description-reviews">
+          <h4>Descripción</h4>
+          <p>{{ productData.respProduct?.description || 'No hay descripción disponible para este producto.' }}</p>
+
+          <div class="shipping-details-section">
+            <h4>🚚 Entregas, envíos y tallas</h4>
+            <div class="shipping-options-container">
+              <div class="shipping-option">
+                <img src="assets/imgs/zonas-cobertura-lima.jpg" alt="Zonas de cobertura en Lima" class="shipping-card-image">
+                <div class="shipping-card-content">
+                  <h5>📍 Entrega sin costo en estaciones:</h5>
+                  <ul>
+                    <li><strong>Tren Eléctrico:</strong> Arriola, Gamarra, La Cultura.</li>
+                    <li><strong>Metropolitano:</strong> Estación Canadá, Estación México.</li>
+                  </ul>
+                  <p>📦 Delivery a otros puntos de Lima (costo adicional según ubicación).</p>
+                </div>
+              </div>
+              <div class="shipping-option">
+                <img src="assets/imgs/shalom-app-info.png" alt="Información de envíos Shalom" class="shipping-card-image">
+                <div class="shipping-card-content">
+                  <h5>📮 Envíos 100% seguros con Shalom.</h5>
+                  <ul>
+                    <li>Costo desde S/ 12.00.</li>
+                    <li>Pago del envío al momento de entregarte la boleta.</li>
+                    <li>Entrega a cualquier destino del Perú.</li>
+                  </ul>
+                  <a href="https://wa.link/shg9bm" target="_blank" class="whatsapp-link">
+                    <nb-icon icon="message-circle-outline" pack="eva"></nb-icon>
+                    Coordinar por WhatsApp
+                  </a>
+                </div>
+              </div>
+              <div class="shipping-option">
+                <img src="assets/imgs/guia-tallas-completa.jpg" alt="Guía de tallas del producto" class="shipping-card-image">
+                <div class="shipping-card-content">
+                  <h5>📏 Guía de Tallas</h5>
+                  <p>Revisa las medidas para elegir tu talla ideal. Las medidas son aproximadas y pueden variar ligeramente.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h4>Reseñas de clientes ({{ dummyReviewsCount }} reseñas)</h4>
+          <div class="review-summary">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="no-data-message" *ngIf="!productData">
+      <nb-alert status="warning">No hay detalles del producto disponibles.</nb-alert>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="footer-container">
+      <app-chatbot [context]="getChatbotContext()"></app-chatbot>
+    </div>
+  </nb-card-footer>
+</nb-card>

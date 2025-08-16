@@ -1,0 +1,101 @@
+/* Using Nebular's theme variables for consistency */
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/default' as *;
+
+/* --- Card Styling --- */
+nb-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem; /* Larger header text */
+
+  button {
+    // Reduce padding on the ghost button to align it nicely
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+/* --- Form & Grid Layout --- */
+form {
+  padding: 1rem 0;
+}
+
+// This replaces your .form-grid for more fine-grained control
+.row {
+  display: flex;
+  flex-wrap: wrap; // Allows items to wrap to the next line on small screens
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+// Column setup for the grid
+.col-md-4, .col-md-6, .col-md-12 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* --- Responsive Grid --- */
+/* On screens 768px and larger, the columns will take up their specified space */
+@media (min-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* --- Form Elements Styling --- */
+.form-group {
+  margin-bottom: 1.25rem; // Provides vertical spacing between form rows
+
+  .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600; // Bolder labels
+    font-size: 0.875rem;
+  }
+}
+
+/* --- Validation message styling --- */
+.caption.status-danger {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+}
+
+/* --- Section Divider --- */
+hr {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border: 0;
+  border-top: 1px solid nb-theme(divider-color);
+}
+
+h5 {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: nb-theme(text-basic-color);
+}
+
+/* --- Button Container --- */
+// This replaces your .button-container for better integration
+.d-flex.justify-content-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem; /* Standardizes the gap between buttons */
+  margin-top: 1.5rem;
+}
+
+/* --- Specific Input Adjustments --- */
+textarea {
+  min-height: 80px;
+  resize: vertical; // Allow user to resize textarea vertically
+}

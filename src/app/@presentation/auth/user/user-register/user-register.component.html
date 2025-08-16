@@ -1,0 +1,105 @@
+<form [formGroup]="loginForm">
+  <div class="container">
+    <div class="flex-container row">
+      <!-- Nombre -->
+      <div class="col-12 col-sm-6">
+        <label for="name" class="form-label">Nombre *</label>
+        <input type="text" nbInput fullWidth status="basic" placeholder="Nombre" formControlName="name" />
+        <div *ngIf="f['name'].invalid && f['name'].touched" class="invalid-text">
+          <span *ngIf="f['name'].errors?.['required']">El campo es obligatorio.</span>
+          <span *ngIf="f['name'].errors?.['minlength']">Debe tener al menos 4 caracteres.</span>
+          <span *ngIf="f['name'].errors?.['maxlength']">Máximo 50 caracteres.</span>
+        </div>
+      </div>
+
+      <!-- Apellido -->
+      <div class="col-12 col-sm-6">
+        <label for="lastName" class="form-label">Apellido</label>
+        <input type="text" nbInput fullWidth status="basic" placeholder="Apellido" formControlName="lastName" />
+      </div>
+
+      <!-- Tipo de documento -->
+      <div class="col-12 col-sm-6">
+        <label class="form-label">Tipo de documento *</label>
+        <nb-select placeholder="Tipo de documento" formControlName="typeDocument">
+          <nb-option value="1">DNI</nb-option>
+          <nb-option value="2">Pasaporte</nb-option>
+          <nb-option value="3">Documento Local</nb-option>
+          <nb-option value="4">Licencia</nb-option>
+        </nb-select>
+      </div>
+
+      <!-- Número de documento -->
+      <div class="col-12 col-sm-6">
+        <label class="form-label">Nro de documento *</label>
+        <input type="text" nbInput fullWidth status="basic" placeholder="Número de documento" formControlName="numTypeDocument" />
+      </div>
+
+      <!-- Contraseña -->
+      <div class="col-12 col-sm-6">
+        <label class="form-label">Contraseña *</label>
+        <input type="password" nbInput fullWidth status="basic" placeholder="Contraseña" formControlName="password" />
+        <div *ngIf="f['password'].invalid && f['password'].touched" class="invalid-text">
+          <span *ngIf="f['password'].errors?.['required']">El campo es obligatorio.</span>
+          <span *ngIf="f['password'].errors?.['minlength']">Mínimo 8 caracteres.</span>
+        </div>
+      </div>
+
+      <!-- Repetir Contraseña -->
+      <div class="col-12 col-sm-6">
+        <label class="form-label">Repetir Contraseña *</label>
+        <input type="password" nbInput fullWidth status="basic" placeholder="Repetir contraseña" formControlName="repeatpassword" />
+        <div *ngIf="f['repeatpassword'].invalid && f['repeatpassword'].touched" class="invalid-text">
+          <span *ngIf="f['repeatpassword'].errors?.['required']">El campo es obligatorio.</span>
+          <span *ngIf="f['repeatpassword'].errors?.['minlength']">Mínimo 8 caracteres.</span>
+        </div>
+      </div>
+
+      <!-- Teléfono -->
+      <div class="col-12 col-sm-6">
+        <label class="form-label">Teléfono</label>
+        <input type="text" nbInput fullWidth status="basic" placeholder="Teléfono" formControlName="phoneNumber" />
+      </div>
+
+      <!-- Email -->
+      <div class="col-12 col-sm-6">
+        <label class="form-label">Email *</label>
+        <input type="email" nbInput fullWidth status="basic" placeholder="Email" formControlName="email" />
+        <div *ngIf="f['email'].invalid && f['email'].touched" class="invalid-text">
+          <span *ngIf="f['email'].errors?.['required']">El email es obligatorio.</span>
+        </div>
+      </div>
+
+      <!-- Alias -->
+      <div class="col-12 col-sm-6">
+        <label class="form-label">Alias</label>
+        <input type="text" nbInput fullWidth status="basic" placeholder="Alias" formControlName="alias" />
+      </div>
+
+      <!-- Nombre de usuario -->
+      <div class="col-12 col-sm-6">
+        <label class="form-label">Usuario</label>
+        <input type="text" nbInput fullWidth status="basic" placeholder="Usuario" formControlName="userName" />
+      </div>
+
+      <!-- Roles -->
+      <div class="col-12 col-sm-12">
+        <label class="form-label">Roles *</label>
+        <nb-select formControlName="roles" placeholder="Seleccionar roles" multiple fullWidth>
+          <nb-option *ngFor="let role of availableRoles" [value]="role">{{ role.name }}</nb-option>
+        </nb-select>
+        <div *ngIf="f['roles'].invalid && f['roles'].touched" class="invalid-text">
+          <span>Debe seleccionar al menos un rol</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btntype mt-4">
+      <button type="submit" class="btn btn-primary" (click)="submit()" [disabled]="loginForm.invalid">
+        Registrar Usuario
+      </button>
+    </div>
+  </div>
+</form>
+
+

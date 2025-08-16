@@ -1,0 +1,312 @@
+<nb-card>
+  <nb-card-body>
+    <app-modal-header [title]="'Detalle del Producto'"></app-modal-header>
+
+    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+      <nb-tabset>
+        <!-- TAB 1: Información del Producto -->
+        <nb-tab tabTitle="Información General">
+          <div class="form-grid">
+            <h5>Identificación del Producto</h5>
+            <input nbInput type="text" placeholder="ID" formControlName="id" readonly />
+            <input nbInput type="text" placeholder="Código del Producto" formControlName="productCode" />
+            <input nbInput type="text" placeholder="Código de Barras" formControlName="barcode" />
+            <input nbInput type="text" placeholder="SKU" formControlName="sku" />
+            <input nbInput type="text" placeholder="UPC" formControlName="upc" />
+
+            <h5>Información Básica</h5>
+            <input nbInput type="text" placeholder="Nombre" formControlName="name"
+              [status]="formData.get('name')?.invalid && formData.get('name')?.touched ? 'danger' : 'basic'" />
+            <nb-icon *ngIf="formData.get('name')?.invalid && formData.get('name')?.touched" icon="alert-circle"
+              status="danger"></nb-icon>
+            <input nbInput type="text" placeholder="Categoría" formControlName="category" />
+            <input nbInput type="text" placeholder="Subcategoría" formControlName="subcategory" />
+            <input nbInput type="date" placeholder="Fecha de Fabricación" formControlName="manufacturingDate" />
+            <input nbInput type="date" placeholder="Fecha de Expiración" formControlName="expirationDate" />
+            <input nbInput type="text" placeholder="Lote" formControlName="batch" />
+            <textarea nbInput placeholder="Descripción" formControlName="description" style="width: 100%;"></textarea>
+
+            <h5>Fabricante y Proveedor</h5>
+            <input nbInput type="text" placeholder="Fabricante" formControlName="manufacturer" />
+            <input nbInput type="text" placeholder="Marca" formControlName="brand" />
+            <app-search-input [service]="proveedorService" fieldName="suppliersByName"
+              (selectedItem)="onProveedorSelected($event)" displayField="name"
+              [selectedValue]="proveedorSeleccionado"></app-search-input>
+
+            <h5>Precios</h5>
+            <input nbInput type="number" placeholder="Precio de Costo" formControlName="costPrice" />
+            <input nbInput type="number" placeholder="Precio de Venta" formControlName="sellingPrice" />
+            <input nbInput type="number" placeholder="Descuento (%)" formControlName="discount" />
+            <nb-select placeholder="Moneda" formControlName="currency">
+              <nb-option *ngFor="let moneda of currencies" [value]="moneda.code">
+                {{ moneda.name }} ({{ moneda.code }})
+              </nb-option>
+            </nb-select>
+
+            <!-- Sección: Precios por Cantidad -->
+            <div class="form-group w-full">
+              <label class="label">Precios por Cantidad</label>
+
+              <div formArrayName="quantityPricing" class="flex flex-col gap-2">
+                <div *ngFor="let group of quantityPricing.controls; let i = index" [formGroupName]="i"
+                  class="flex flex-wrap items-center gap-2 border border-gray-200 rounded-xl p-3">
+
+                  <input nbInput fullWidth fieldSize="small" placeholder="Talla (ej. XL)" formControlName="size"
+                    class="w-[100px]" />
+
+                  <input nbInput fullWidth fieldSize="small" placeholder="Descripción (ej. por docena)"
+                    formControlName="description" class="w-[150px]" />
+
+                  <input nbInput fullWidth fieldSize="small" type="number" placeholder="Cantidad mínima"
+                    formControlName="minQuantity" class="w-[100px]" />
+
+                  <input nbInput fullWidth fieldSize="small" type="number" placeholder="Precio unitario"
+                    formControlName="unitPrice" class="w-[120px]" />
+
+                  <button nbButton size="tiny" status="danger" (click)="removeQuantityPrice(i)">
+                    <nb-icon icon="close-outline"></nb-icon>
+                  </button>
+                </div>
+              </div>
+
+              <button nbButton size="small" status="info" class="mt-2" (click)="addQuantityPrice()">
+                <nb-icon icon="plus-outline"></nb-icon>
+                Agregar Precio por Cantidad
+              </button>
+            </div>
+
+
+            <h5>Inventario y Dimensiones</h5>
+            <input nbInput type="text" placeholder="Unidad de Medida" formControlName="unitMeasure" />
+            <input nbInput type="number" placeholder="Stock Mínimo" formControlName="minStock" />
+            <input nbInput type="number" placeholder="Stock Máximo" formControlName="maxStock" />
+            <input nbInput type="number" placeholder="Peso (kg)" formControlName="weight" />
+            <input nbInput type="number" placeholder="Altura (cm)" formControlName="height" />
+            <input nbInput type="number" placeholder="Ancho (cm)" formControlName="width" />
+            <input nbInput type="number" placeholder="Largo (cm)" formControlName="length" />
+
+            <h5>Etiquetas</h5>
+            <nb-checkbox formControlName="isFeatured">Producto Destacado</nb-checkbox>
+            <nb-checkbox formControlName="isNewArrival">Nuevo Ingreso</nb-checkbox>
+            <nb-checkbox formControlName="status">Activo</nb-checkbox>
+
+            <!-- ▼▼▼ REEMPLAZA EL INPUT DE TAGS ANTERIOR CON ESTO ▼▼▼ -->
+            <div class="form-control-group tags-container">
+              <label>Tags (presiona Enter para agregar):</label>
+
+
+
+              <input #tagInput nbInput fullWidth placeholder="Ej: oferta, verano, popular"
+                (keydown.enter)="addTag(tagInput); $event.preventDefault()">
+              <!-- Lista de etiquetas ya agregadas -->
+              <nb-tag-list (tagRemove)="removeTag($event)">
+                <nb-tag *ngFor="let tag of tags.controls; let i = index" [text]="tag.value" removable>
+                </nb-tag>
+              </nb-tag-list>
+            </div>
+
+          </div>
+        </nb-tab>
+
+        <!-- ▼▼▼ TAB 3: NUEVA PESTAÑA PARA GUÍA DE TALLAS DE ROPA ▼▼▼ -->
+        <nb-tab tabTitle="Guía de Tallas">
+          <div class="measurements-container" formArrayName="measurements">
+            <h5>Tabla de Medidas de Prenda (en cm)</h5>
+            <div class="measurement-header measurement-row">
+              <div>Talla</div>
+              <div>Contorno de Pecho (x2)</div>
+              <div>Espalda (H-H) (x2)</div>
+              <div>Largo Total</div>
+              <div>Largo de Manga</div>
+              <div class="actions-header">Acción</div>
+            </div>
+            <div *ngFor="let m of measurements.controls; let i = index" [formGroupName]="i" class="measurement-row">
+              <input nbInput placeholder="Talla" formControlName="size" />
+              <input nbInput type="number" placeholder="cm" formControlName="chestContour" />
+              <input nbInput type="number" placeholder="cm" formControlName="shoulderWidth" />
+              <input nbInput type="number" placeholder="cm" formControlName="totalLength" />
+              <input nbInput type="number" placeholder="cm" formControlName="sleeveLength" />
+              <button nbButton ghost status="danger" type="button" (click)="removeMeasurement(i)">
+                <nb-icon icon="trash-2-outline"></nb-icon>
+              </button>
+            </div>
+            <button nbButton status="success" type="button" (click)="addMeasurement()" class="add-row-button">
+              <nb-icon icon="plus-outline"></nb-icon>
+              Añadir Medida de Talla
+            </button>
+          </div>
+        </nb-tab>
+
+        <!-- ▼▼▼ TAB 4: NUEVA PESTAÑA PARA ESPECIFICACIONES GENÉRICAS ▼▼▼ -->
+        <nb-tab tabTitle="Otras Especificaciones">
+          <div class="specifications-container" formArrayName="specifications">
+            <nb-accordion multi>
+              <nb-accordion-item *ngFor="let group of specifications.controls; let groupIndex = index"
+                [formGroupName]="groupIndex">
+                <nb-accordion-item-header>
+                  <input nbInput fullWidth placeholder="Nombre del Grupo (Ej: Detalles Técnicos)"
+                    formControlName="groupName" (click)="$event.stopPropagation()">
+                  <button nbButton ghost status="danger" type="button"
+                    (click)="removeSpecificationGroup(groupIndex); $event.stopPropagation()">
+                    <nb-icon icon="trash-2-outline"></nb-icon>
+                  </button>
+                </nb-accordion-item-header>
+                <nb-accordion-item-body>
+                  <div class="attributes-list" formArrayName="attributes">
+                    <div *ngFor="let attribute of getAttributes(groupIndex).controls; let attrIndex = index"
+                      [formGroupName]="attrIndex" class="attribute-row">
+                      <input nbInput placeholder="Atributo (Ej: Material)" formControlName="key">
+                      <input nbInput placeholder="Valor (Ej: 100% Algodón Pima)" formControlName="value">
+                      <button nbButton ghost status="danger" type="button"
+                        (click)="removeAttribute(groupIndex, attrIndex)">
+                        <nb-icon icon="close-outline"></nb-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <button nbButton outline status="primary" type="button" (click)="addAttribute(groupIndex)"
+                    class="add-attribute-button">
+                    Añadir Atributo
+                  </button>
+                </nb-accordion-item-body>
+              </nb-accordion-item>
+            </nb-accordion>
+            <button nbButton status="success" type="button" (click)="addSpecificationGroup()" class="add-group-button">
+              <nb-icon icon="plus-outline"></nb-icon>
+              Añadir Grupo de Especificaciones
+            </button>
+          </div>
+        </nb-tab>
+        <!-- TAB 2: Tallas e Imágenes -->
+        <nb-tab tabTitle="Tallas e Imágenes">
+          <div class="form-grid">
+
+            <h5>Imágenes del producto</h5>
+            <div class="image-upload-grid">
+              <div class="custom-file-input">
+                <input type="file" multiple accept="image/*" (change)="onImageSelected($event)"
+                  [disabled]="formData.get('name')?.invalid" />
+              </div>
+              <nb-select placeholder="Tipo Imagen" formControlName="typeImagen">
+                <nb-option *ngFor="let s of fileTypes" [value]="s">{{ s }}</nb-option>
+              </nb-select>
+              <nb-select multiple placeholder="Asignar imágenes" formControlName="images">
+                <nb-option *ngFor="let img of imagePreviews" [value]="img.url">
+                  <img [src]="img.url" width="30" /> Imagen {{ img.url | slice: -10 }}
+                </nb-option>
+              </nb-select>
+            </div>
+
+            <div class="image-preview-container" *ngIf="imagePreviews.length > 0">
+              <div *ngFor="let img of imagePreviews; let i = index" class="preview-box">
+                <img [src]="img.url" [alt]="'Imagen ' + i" />
+                <button nbButton size="tiny" status="danger" (click)="removeImage(i)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </nb-tab>
+        <!-- Añade esta nueva pestaña dentro de tu <nb-tabset> -->
+
+        <nb-tab tabTitle="Guía de Venta (IA)">
+          <div class="form-grid" formGroupName="salesGuide">
+
+            <h5 nbTooltip="Información clave para que la IA entienda y venda el producto.">Contenido para Asistente de
+              IA</h5>
+
+            <!-- Propuesta de Valor -->
+            <textarea nbInput fullWidth placeholder="Propuesta de Valor" formControlName="valueProposition"
+              nbTooltip="Frase principal que define por qué este producto es la mejor opción. Ej: 'Los audífonos con la mejor cancelación de ruido para viajeros frecuentes.'"
+              class="full-width-field"></textarea>
+
+            <!-- Guía de Ajuste y Estilo -->
+            <textarea nbInput fullWidth placeholder="Guía de Ajuste y Estilo" formControlName="fitAndStyleGuide"
+              nbTooltip="Describe cómo queda la prenda y con qué combinarla. Ej: 'Corte holgado, cae justo en la cadera. Ideal con zapatillas blancas.'"
+              class="full-width-field"></textarea>
+
+            <!-- Beneficios Clave (FormArray) -->
+            <div class="benefits-container full-width-field">
+              <h6>Beneficios Clave (Característica -> Beneficio)</h6>
+              <div formArrayName="keyBenefits">
+                <div *ngFor="let benefit of keyBenefits.controls; let i = index" [formGroupName]="i"
+                  class="benefit-row">
+                  <input nbInput placeholder="Característica (Ej: Tejido impermeable)" formControlName="feature">
+                  <input nbInput placeholder="Beneficio (Ej: Te mantiene seco bajo la lluvia)"
+                    formControlName="benefit">
+                  <button nbButton ghost status="danger" type="button" (click)="removeBenefit(i)"
+                    nbTooltip="Eliminar beneficio">
+                    <nb-icon icon="trash-2-outline"></nb-icon>
+                  </button>
+                </div>
+              </div>
+              <button nbButton outline status="primary" type="button" (click)="addBenefit()"
+                class="add-attribute-button">
+                Añadir Beneficio
+              </button>
+            </div>
+
+          </div>
+        </nb-tab>
+
+        <!-- TAB 3: Catálogo de Imágenes -->
+        <nb-tab tabTitle="Catálogo de Imágenes">
+          <div class="catalog-table">
+            <div class="column" #columnRef>
+              <h3>Catálogo</h3>
+              <div cdkDropList id="catalogDropList" [cdkDropListData]="catalogImagesMetadata"
+                [cdkDropListConnectedTo]="['assignDropList']" class="image-list"
+                (cdkDropListDropped)="onCatalogDrop($event)">
+                <div class="image-box" *ngFor="let img of catalogImagesMetadata" cdkDrag [cdkDragData]="img">
+
+                  <div class="image-with-sizes">
+                    <img *ngIf="img.fileMetadata && img.fileMetadata[0]?.url" [src]="img.fileMetadata[0].url"
+                      alt="Imagen de catálogo" />
+                    <button type="button" size="tiny" status="danger" 44 5q63w745>
+                      Eliminar
+                    </button>
+                  </div>
+
+                </div>
+                <div class="image-box placeholder" *ngFor="let empty of emptySlots"></div>
+
+              </div>
+            </div>
+
+            <div class="column" #columnRef>
+              <h3>Asignadas</h3>
+              <div cdkDropList id="assignDropList" [cdkDropListData]="assignedImages"
+                [cdkDropListConnectedTo]="['catalogDropList']" class="image-list asignadas-column"
+                (cdkDropListDropped)="onAssignDrop($event)">
+                <div class="image-box" *ngFor="let img of assignedImages" cdkDrag [cdkDragData]="img">
+                  <div class="image-with-sizes">
+                    <img *ngIf="img.fileMetadata && img.fileMetadata[0]?.url" [src]="img.fileMetadata[0].url"
+                      alt="Imagen asignada" />
+                    <div class="sizes-row">
+                      <!--
+    Añadimos esta guarda.
+    Este bloque solo se procesará si 'img.sizeStockMap' no es nulo ni undefined.
+  -->
+                      <ng-container *ngIf="img.sizeStockMap">
+                        <div class="size-input" *ngFor="let size of sizes">
+                          <label>{{ size }}</label>
+                          <input nbInput type="number" [placeholder]="size" min="0" [(ngModel)]="img.sizeStockMap[size]"
+                            [ngModelOptions]="{standalone: true}">
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <div class="image-box placeholder" *ngFor="let empty of emptySlots"></div>
+              </div>
+
+            </div>
+          </div>
+          <!-- Acciones -->
+          <div class="button-container">
+            <button nbButton status="primary" [disabled]="formData.invalid">Guardar</button>
+            <button type="button" nbButton status="danger" (click)="returnToList()">Regresar</button>
+          </div>
+        </nb-tab>
+      </nb-tabset>
+
+    </form>
+  </nb-card-body>
+</nb-card>

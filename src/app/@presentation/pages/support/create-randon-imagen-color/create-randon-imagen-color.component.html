@@ -1,0 +1,16 @@
+<div>
+    <input type="file" (change)="onFileSelected($event)" />
+    <button (click)="onSubmit()">Upload</button>
+ 
+    <!-- ... existing code -->
+
+<div *ngIf="imageUrl">
+  <!-- Display the image using the imageUrl -->
+  <img [src]="imageUrl" alt="Uploaded Image" />
+</div>
+<div *ngFor="let color of imagenResponse">
+  {{ color }}
+</div>
+<!-- ... rest of your HTML code -->
+
+  </div>

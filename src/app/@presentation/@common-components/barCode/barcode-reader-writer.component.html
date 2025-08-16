@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header>Select Barcode Type</nb-card-header>
+  <nb-card-body>
+    <nb-select [(selected)]="barcodeType">
+      <nb-option value="1D">1D Barcode (Scanner Device)</nb-option>
+      <nb-option value="2D">2D QR Code (Camera)</nb-option>
+    </nb-select>
+
+    <div *ngIf="barcodeType() === '2D'" class="qr-section">
+      <h6>Scan QR Code</h6>
+      <video #videoElement width="300" height="200"></video>
+      <button nbButton status="primary" (click)="startScanning()">Start Scan</button>
+      <button nbButton status="danger" (click)="stopScanning()">Stop Scan</button>
+    </div>
+
+    <div>
+      <h6>Generate Barcode</h6>
+      <input nbInput fullWidth placeholder="Enter value" [(ngModel)]="barcodeValue">
+      <button nbButton status="success" (click)="generateBarcode()">Generate</button>
+      <ngx-barcode 
+        *ngIf="barcodeValue()" 
+        [bcValue]="barcodeValue()" 
+        [bcFormat]="barcodeType() === '1D' ? 'CODE128' : 'QR_CODE'">
+      </ngx-barcode>
+    </div>
+  </nb-card-body>
+</nb-card>

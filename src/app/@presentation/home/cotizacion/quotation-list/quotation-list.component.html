@@ -1,0 +1,65 @@
+<nb-card>
+  <nb-card-header>
+    <h2>Gestión de Cotizaciones</h2>
+    <p>Busca, crea o administra las cotizaciones de los clientes.</p>
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="form-container">
+      <form [formGroup]="quotationForm">
+        <nb-accordion multi="true">
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              Filtros de Búsqueda
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="form-grid">
+                <input nbInput fullWidth type="text" placeholder="ID de Cotización" formControlName="id"
+                  (input)="checkInputs()" />
+
+                <input nbInput fullWidth type="text" placeholder="Email del Cliente" formControlName="contactEmail"
+                  (input)="checkInputs()" />
+
+                <input nbInput fullWidth type="text" placeholder="Estado (Ej: PENDING)" formControlName="status"
+                  (input)="checkInputs()" />
+              </div>
+
+              <div class="button-container">
+                <button nbButton status="primary" (click)="findByparameter()" [disabled]="searchButtonDisabled">
+                  <nb-icon icon="search-outline"></nb-icon>
+                  Buscar
+                </button>
+                <button nbButton status="success" (click)="onNewClick()">
+                  <nb-icon icon="plus-outline"></nb-icon>
+                  Nueva Cotización
+                </button>
+              </div>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+
+        <nb-accordion multi="true" class="mt-4">
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>
+              Resultados
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <app-table-datasource 
+                [datas]="datas" 
+                [defaultColumns]="defaultColumnsInput"
+                (pageChange)="onPageChange($event)" 
+                (pageSizeChange)="onPageSizeChange($event)"
+                (deleteAction)="deleting($event)" 
+                [isdelelete]="isdelelete" 
+                [hasMorePages]="hasMorePagesT"
+                (editAction)="handleEditAction($event)" 
+                (loadMoreData)="findQuotationsProcess()"
+                (noData)="showNoDataMessage()">
+              </app-table-datasource>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </form>
+    </div>
+  </nb-card-body>
+</nb-card>

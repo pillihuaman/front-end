@@ -1,0 +1,90 @@
+<form [formGroup]="myForm">
+  <div class="container">
+    
+    <!-- System Selection -->
+    <div class="form-group col-sm-4">
+   
+        <nb-select placeholder="System" formControlName="idSystem" required>
+          <nb-option *ngFor="let sys of listSystem" [value]="sys.idSystem">
+            {{ sys.description }}
+          </nb-option>
+        </nb-select>
+     
+    </div>
+
+    <!-- Menu Selection -->
+    <div class="form-group col-sm-4">
+   
+        <nb-select placeholder="Menu" formControlName="idMenu" required>
+          <nb-option *ngFor="let sys of listMenu" [value]="sys.idMenu">
+            {{ sys.description }}
+          </nb-option>
+        </nb-select>
+     
+    </div>
+
+    <!-- Sub Menu Selection -->
+    <div class="form-group col-sm-4">
+   
+        <nb-select placeholder="Sub Menu" formControlName="idSubMenu" required>
+          <nb-option *ngFor="let sys of listSubMenu" [value]="sys.idSubMenu">
+            {{ sys.description }}
+          </nb-option>
+        </nb-select>
+     
+    </div>
+
+    <!-- Page Selection -->
+    <div class="form-group col-sm-4">
+   
+        <nb-select placeholder="Page" formControlName="idPage" required>
+          <nb-option *ngFor="let sys of listPage" [value]="sys.idPage">
+            {{ sys.description }}
+          </nb-option>
+        </nb-select>
+     
+    </div>
+
+    <!-- Control Name -->
+    <div class="form-group col-sm-4">
+   
+        <input nbInput type="text" placeholder="Control Name" [maxLength]="50" formControlName="text" />
+     
+    </div>
+
+    <!-- Description -->
+    <div class="form-group col-sm-4">
+   
+        <input nbInput type="text" placeholder="Description" [maxLength]="50" required formControlName="description" />
+     
+    </div>
+
+    <!-- Icon -->
+    <div class="form-group col-sm-4">
+   
+        <input nbInput type="text" placeholder="Icon" [maxLength]="50" required formControlName="icono" />
+     
+    </div>
+
+    <!-- Icon Class -->
+    <div class="form-group col-sm-4">
+   
+        <input nbInput type="text" placeholder="Icon Class" [maxLength]="50" formControlName="iconClass" />
+     
+    </div>
+
+    <!-- Style Class -->
+    <div class="form-group col-sm-4">
+   
+        <input nbInput type="text" placeholder="Style Class" [maxLength]="100" required formControlName="styleClass" />
+     
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-group">
+      <button nbButton status="primary" (click)="save()">Save</button>
+      <app-router-button (click)="save()"></app-router-button>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,46 @@
+
+      <div class="form-container">
+        <form [formGroup]="unifiedForm">
+          <nb-accordion>
+            <nb-accordion-item expanded="true">
+              <nb-accordion-item-header>System Search</nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <div class="form-grid">
+                  <input nbInput fullWidth placeholder="System ID" formControlName="id" />
+                  <input nbInput fullWidth placeholder="System Name" formControlName="name" />
+                  <input nbInput fullWidth placeholder="Page Name" formControlName="pageName" />
+                  <input nbInput fullWidth placeholder="Page URL" formControlName="pageUrl" />
+                  <input nbInput fullWidth placeholder="Menu Title" formControlName="menuTitle" />
+                  <input nbInput fullWidth placeholder="Menu URL" formControlName="menuUrl" />
+                </div>
+                <div class="button-container">
+                  <div class="action-buttons-grid">
+                    <button nbButton status="primary" (click)="findByparameter()">🔍 Search</button>
+                    <button nbButton status="success" (click)="onNewSystem()">➕ New System</button>
+                    <button nbButton status="info" (click)="onNewPage()">➕ New Page</button>
+                    <button nbButton status="warning" (click)="onNewMenu()">➕ New Menu</button>
+                  </div>
+                  
+                </div>
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+          </nb-accordion>
+        </form>
+  
+        <nb-accordion>
+          <nb-accordion-item expanded="true">
+            <nb-accordion-item-header>Data Results</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <app-table-datasource
+                [datas]="results"
+                [defaultColumns]="defaultColumnsInput"
+                (editAction)="handleEditAction($event)"
+                (deleteAction)="deleting($event)"
+                [hasMorePages]="hasMorePagesT"
+                (loadMoreData)="loadSystemStructure()"
+                (noData)="showNoDataMessage()">
+              </app-table-datasource>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </div>

@@ -1,0 +1,382 @@
+:host {
+  display: block;
+}
+
+/* ========================================= */
+/* 🎯 Estructura de Pestañas y Contenido */
+/* ========================================= */
+.tab-content-wrapper {
+    padding: 1.5rem 0;
+}
+
+/* ========================================= */
+/* 🎯 Estructura Principal del Formulario con Grid */
+/* ========================================= */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Rejilla de 3 columnas para escritorio */
+  gap: 1rem 1.5rem; /* Espacio vertical y horizontal */
+  padding: 1.5rem 0;
+}
+
+/* Título de sección dentro de la rejilla */
+.section-title-grid {
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: var(--color-primary-500);
+  border-bottom: 2px solid var(--border-basic-color-3);
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+/* Clase para elementos que deben ocupar todo el ancho de la rejilla */
+.full-width-field {
+  grid-column: 1 / -1;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.guia-tallas-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--card-border-radius);
+}
+
+
+/* ========================================= */
+/* 🎨 Grilla de Jugadores */
+/* ========================================= */
+.quotation-grid {
+    width: 100%;
+}
+.grid-header, .grid-row {
+  display: grid;
+  grid-template-columns: 40px 3fr 1fr 1.5fr 2fr 1fr 80px;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-basic-color-3);
+}
+.grid-header {
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    background-color: var(--background-basic-color-2);
+    border-radius: var(--button-border-radius);
+}
+.add-row-button {
+  margin-top: 1rem;
+}
+
+.tipo-prenda nb-checkbox {
+    width: 100%;
+}
+
+/* ========================================= */
+/* 🎨 Carga y Previsualización de Archivos */
+/* ========================================= */
+.file-upload-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.file-input-hidden {
+  display: none;
+}
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--background-basic-color-2);
+  border: 1px solid var(--border-basic-color-4);
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  &:hover {
+    background-color: var(--background-basic-color-3);
+    border-color: var(--color-primary-500);
+  }
+}
+
+.preview-section {
+  background-color: var(--background-basic-color-2);
+  border-radius: var(--card-border-radius);
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.previews-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.preview-box {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    & .preview-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--button-border-radius);
+      border: 1px solid var(--border-basic-color-3);
+    }
+    & .delete-preview-btn {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      --button-ghost-background-color: var(--background-basic-color-1);
+      --button-ghost-border-color: var(--border-basic-color-4);
+    }
+}
+  
+.no-preview-placeholder {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    min-height: 150px;
+    color: var(--text-hint-color);
+    border: 2px dashed var(--border-basic-color-3);
+    border-radius: var(--card-border-radius);
+    & nb-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+}
+
+
+/* ========================================= */
+/* 🎨 Footer Rediseñado */
+/* ========================================= */
+.footer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    width: 100%;
+    align-items: start;
+}
+  
+.footer-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+  
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+
+    &.total {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--color-primary-500);
+      border-top: 2px solid var(--border-basic-color-3);
+      margin-top: 0.5rem;
+      padding-top: 1rem;
+    }
+}
+  
+.terms-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+
+      nb-icon {
+        font-size: 1.25rem;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+    }
+}
+  
+.terms-checkbox {
+    margin-bottom: 0.5rem;
+}
+  
+.submit-button nb-icon {
+    margin-right: 0.5rem;
+}
+
+
+/* ========================================= */
+/* 📱 Media Queries para Responsividad */
+/* ========================================= */
+@media (max-width: 1024px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 991px) {
+    /* Responsividad para la tabla de jugadores */
+    .grid-header {
+        display: none;
+    }
+    .grid-row {
+        display: block;
+        border: 1px solid var(--border-basic-color-3);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        background-color: var(--background-basic-color-2);
+    }
+    .grid-cell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border-basic-color-3);
+        &:last-child {
+            border: none;
+        }
+        &::before {
+            content: attr(data-label);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        > * {
+            flex-grow: 1;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+  .form-grid {
+    grid-template-columns: 1fr; /* 1 columna en móviles */
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}/* ... dentro de tu archivo SCSS ... */
+
+.terms-checkbox-container {
+  margin-bottom: 1.5rem; /* Restaura el espaciado que daba el nb-form-field */
+}
+
+.terms-checkbox {
+  /* Si necesitas algún ajuste específico para el checkbox, va aquí */
+}
+
+/* ========================================= */
+/* 🛡️ Verification Section Styles */
+/* ========================================= */
+.verification-section {
+  background-color: var(--background-basic-color-2);
+  border-radius: var(--button-border-radius);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--color-warning-500);
+}
+
+.verification-input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  
+  input {
+    flex-grow: 1;
+  }
+  
+  button {
+    flex-shrink: 0;
+    width: 120px;
+  }
+}
+
+.resend-button {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .verification-input-group {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+}
+
+
+/* ========================================= */
+/* 🛡️ Estilos para la verificación en dos pasos */
+/* ========================================= */
+.verification-section {
+  margin-bottom: 1.5rem;
+}
+
+.send-code-button {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.code-input-section {
+  background-color: var(--background-basic-color-2);
+  border-radius: var(--button-border-radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  
+  input {
+    flex-grow: 1;
+  }
+  
+  button {
+    flex-shrink: 0;
+    width: 140px;
+  }
+}
+
+.resend-button {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .input-group {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+}
