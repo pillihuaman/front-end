@@ -21,8 +21,13 @@
               status="danger"></nb-icon>
             <input nbInput type="text" placeholder="Categoría" formControlName="category" />
             <input nbInput type="text" placeholder="Subcategoría" formControlName="subcategory" />
-            <input nbInput type="date" placeholder="Fecha de Fabricación" formControlName="manufacturingDate" />
-            <input nbInput type="date" placeholder="Fecha de Expiración" formControlName="expirationDate" />
+            <input type="datetime-local" nbInput fullWidth placeholder="Fecha de Fabricación"
+              formControlName="manufacturingDate" />
+
+            <!-- Reemplaza el bloque de expirationDate -->
+            <input type="datetime-local" nbInput fullWidth placeholder="Fecha de Expiración"
+              formControlName="expirationDate" />
+
             <input nbInput type="text" placeholder="Lote" formControlName="batch" />
             <textarea nbInput placeholder="Descripción" formControlName="description" style="width: 100%;"></textarea>
 
@@ -299,14 +304,13 @@
 
             </div>
           </div>
+        </nb-tab>
+      </nb-tabset>
           <!-- Acciones -->
           <div class="button-container">
             <button nbButton status="primary" [disabled]="formData.invalid">Guardar</button>
             <button type="button" nbButton status="danger" (click)="returnToList()">Regresar</button>
           </div>
-        </nb-tab>
-      </nb-tabset>
-
     </form>
   </nb-card-body>
 </nb-card>

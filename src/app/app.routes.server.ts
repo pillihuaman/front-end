@@ -34,13 +34,15 @@ export const serverRoutes: ServerRoute[] = [
     path: 'support/common-data/detail/:id',
     renderMode: RenderMode.Client
   },
-  {
+    {
     path: 'bussiness/warehouse/detail/:id',
     renderMode: RenderMode.Client
-  }
+  },
+  /*
+
   ,
   {
-    path: 'bussiness/purchase-order/detail/:id',
+    path: 'bussiness/purchase-order/detail/:ids',
     renderMode: RenderMode.Client
   },
   {
@@ -58,7 +60,7 @@ export const serverRoutes: ServerRoute[] = [
   {
     path: 'bussiness/inventory/detail/new',
     renderMode: RenderMode.Client
-  },
+  },*/
   {
     path: '**',
     renderMode: RenderMode.Prerender // This catches everything else

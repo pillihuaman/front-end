@@ -78,36 +78,50 @@
       </ng-template>
     </div>
   </section>
-  <footer class="surreal-footer">
-    <div class="footer-content">
-      <div class="footer-column">
-        <h3 class="footer-title">Alamodaperu.online</h3>
-        <p class="footer-description">Vistiendo la realidad con un toque de imaginación. Encuentra tu estilo único con
-          nosotros.</p>
-      </div>
-      <div class="footer-column">
-        <h3 class="footer-title">Navegación</h3>
-        <ul class="footer-links">
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Tienda</a></li>
-          <li><a href="#">Nosotros</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h3 class="footer-title">Síguenos</h3>
-        <div class="social-icons">
-          <a href="#" class="social-link"><nb-icon icon="facebook-outline" pack="eva"></nb-icon></a>
-          <a href="#" class="social-link"><nb-icon icon="instagram-outline" pack="eva"></nb-icon></a>
-          <a href="#" class="social-link"><nb-icon icon="twitter-outline" pack="eva"></nb-icon></a>
-        </div>
-      </div>
-  <app-detail-contact [showInquirySection]="true"></app-detail-contact>
+
+
+<footer class="surreal-footer">
+  <div class="footer-content">
+
+    <!-- Columna 1: Descripción y Navegación -->
+    <div class="footer-column">
+      <h3 class="footer-title">Alamodaperu.online</h3>
+      <p class="footer-description">Vistiendo la realidad con un toque de imaginación. Encuentra tu estilo único con nosotros.</p>
+      
+      <h3 class="footer-title" style="margin-top: 2rem;">Navegación</h3>
+      <ul class="footer-links">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Tienda</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; 2025 Alamodaperu.online — Todos los derechos reservados.</p>
+
+    <!-- Columna 2: Video y Redes Sociales -->
+    <div class="footer-column">
+      <h3 class="footer-title">Nuestros Productos en Acción</h3>
+      <div class="video-container-footer">
+        <youtube-player [videoId]="videoId" width="100%" height="100%"></youtube-player>
+      </div>
+
+      <h3 class="footer-title" style="margin-top: 2rem;">Síguenos</h3>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/alamodaperucom" target="_blank" rel="noopener noreferrer" class="social-link"><nb-icon icon="facebook-outline" pack="eva"></nb-icon></a>
+        <a href="https://www.tiktok.com/@alamodaperucom" target="_blank" rel="noopener noreferrer" class="social-link"><nb-icon icon="music-outline" pack="eva"></nb-icon></a>
+        <a href="https://youtube.com/@alamodaperu.online?si=3VXsYhPm5Jkywdf8" target="_blank" rel="noopener noreferrer" class="social-link"><nb-icon icon="video-outline" pack="eva"></nb-icon></a>
+      </div>
     </div>
-  </footer>
+
+    <!-- Columna 3: Formulario de Contacto (ocupa 2 columnas en pantallas grandes) -->
+    <div class="footer-column contact-form-column">
+      <app-detail-contact [showInquirySection]="true"></app-detail-contact>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Alamodaperu.online — Todos los derechos reservados.</p>
+  </div>
+</footer>
 
   <!-- ============================================= -->
   <!-- ===== NUEVO: BOTONES FLOTANTES SOCIALES ===== -->

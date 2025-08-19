@@ -6,9 +6,9 @@ import { Observable, of } from 'rxjs';
 import { finalize, switchMap } from 'rxjs/operators';
 
 // Nebular & Third-Party Imports
-import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbDatepickerModule, NbTimepickerModule, NbDialogService, NbAccordionModule, NbDialogModule, NbLayoutModule, NbSelectModule, NbCheckboxModule, NbTagListComponent, NbTagModule } from '@nebular/theme';
-import { NbDateFnsDateModule } from '@nebular/date-fns';
-import { NbMomentDateModule } from '@nebular/moment';
+import { NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbDatepickerModule, NbTimepickerModule, NbDialogService, NbAccordionModule, NbDialogModule, NbLayoutModule, NbSelectModule, NbCheckboxModule, NbTagListComponent, NbTagModule, NbTooltipModule } from '@nebular/theme';
+
+
 import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop';
 
 // Project-Specific Imports
@@ -58,13 +58,11 @@ import { commonConfigIds } from '../../../../../utils/values';
     NbAccordionModule,
     NbSelectModule,
     NbCheckboxModule,
-    NbMomentDateModule,
-    NbDateFnsDateModule,
     NebularSharedModule,
     // Common Components
     AppModalHeaderComponent,
     AppModalFooterComponent,
-    SearchInputComponent,NbTagModule
+    SearchInputComponent,NbTagModule,NbTooltipModule
   ],
   templateUrl: './detail-product.component.html',
   styleUrls: ['./detail-product.component.scss'] // Use styleUrls (plural)
@@ -357,6 +355,7 @@ removeQuantityPrice(index: number): void {
   }
 
   patchFormValues(): void {
+    debugger
     if (!this.entityData) return;
 
     // 1. Patch all the simple form controls
@@ -374,8 +373,8 @@ removeQuantityPrice(index: number): void {
       supplierName: this.entityData.supplierName,
       manufacturer: this.entityData.manufacturer,
       brand: this.entityData.brand,
-      expirationDate: this.entityData.expirationDate ? new Date(this.entityData.expirationDate) : null,
-      manufacturingDate: this.entityData.manufacturingDate ? new Date(this.entityData.manufacturingDate) : null,
+expirationDate: this.entityData.expirationDate ? this.datePipe.transform(this.entityData.expirationDate, 'yyyy-MM-ddTHH:mm') : null,
+manufacturingDate: this.entityData.manufacturingDate ? this.datePipe.transform(this.entityData.manufacturingDate, 'yyyy-MM-ddTHH:mm') : null,
       costPrice: this.entityData.pricing?.costPrice,
       sellingPrice: this.entityData.pricing?.sellingPrice,
       discount: this.entityData.pricing?.discount,
@@ -517,12 +516,12 @@ onSubmit() {
       .filter(w => w.fileMetadata && w.fileMetadata.length > 0)
       .map(w => ({ ...w.fileMetadata![0], position: 'CATALOG', sizeStock: [] }));
 
-
+debugger
     // Construye el DTO final
     const productRequest: ReqProduct = {
       ...formRaw,
-      expirationDate: this.datePipe.transform(formRaw.expirationDate, 'dd/MM/yyyy') || null,
-      manufacturingDate: this.datePipe.transform(formRaw.manufacturingDate, 'dd/MM/yyyy') || null,
+       expirationDate: this.datePipe.transform(formRaw.expirationDate, 'dd/MM/yyyy HH:mm:ss') || null,
+      manufacturingDate: this.datePipe.transform(formRaw.manufacturingDate, 'dd/MM/yyyy HH:mm:ss') || null,
       tags: formRaw.tags,
       pricing: { costPrice: formRaw.costPrice, sellingPrice: formRaw.sellingPrice, discount: formRaw.discount, currency: formRaw.currency },
       inventory: { unitMeasure: formRaw.unitMeasure, minStock: formRaw.minStock, maxStock: formRaw.maxStock, isFeatured: formRaw.isFeatured, isNewArrival: formRaw.isNewArrival, batch: formRaw.batch, weight: formRaw.weight, height: formRaw.height, width: formRaw.width, length: formRaw.length },

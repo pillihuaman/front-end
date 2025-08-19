@@ -7,10 +7,14 @@ import { NotauthGuard } from './@data/interceptors/notauth.guard';
 import { SystemComponent } from './@presentation/system-admin/system.component';
 
 export const routes: Routes = [
+  // =================================================================
+  //  RUTA PRINCIPAL (HOME)
+  // =================================================================
   {
     path: 'home',
     component: HomeComponent,
     children: [
+      { path: '', redirectTo: 'main', pathMatch: 'full' },
       {
         path: 'main',
         loadComponent: () => import('./@presentation/home/main/main-page/main-page.component')
@@ -27,19 +31,23 @@ export const routes: Routes = [
           .then(m => m.QuotationListComponent)
       },
       {
-        // Ruta para VER o EDITAR una cotización existente por su ID
-        path: 'quotation/detail/:id', // La ruta que causaba el error
+        path: 'quotation/detail/:id',
         loadComponent: () => import('./@presentation/home/cotizacion/quotation-detail/quotation-create.component')
           .then(m => m.QuotationCreateComponent),
-        data: { renderMode: 'client' } // Importante para SSR
+        data: { renderMode: 'client' }
       },
     ],
   },
+
+  // =================================================================
+  //  RUTAS DE AUTENTICACIÓN
+  // =================================================================
   {
     path: 'auth',
-    // component: AuthComponent,
-    //canActivate: [NotauthGuard], // Puedes habilitarlo si el guard funciona bien
+    component: AuthComponent,
+    canActivate: [NotauthGuard],
     children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
         path: 'login',
         loadComponent: () => import('./@presentation/auth/user/login/login.component')
@@ -53,10 +61,21 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'spi-control',
+    loadChildren: () => import('./@presentation/web-pages/spi-control/spi-control.routes')
+      .then(m => m.SPI_CONTROL_ROUTES),
+    data: { renderMode: 'client' }
+  },
+
+  // =================================================================
+  //  RUTAS DE PANEL DE SOPORTE (SUPPORT)
+  // =================================================================
+  {
     path: 'support',
     component: PageComponent,
-    //  canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'product', pathMatch: 'full' },
       {
         path: 'imagen-product',
         loadComponent: () => import('./@presentation/pages/support/register-image-by-product/register-image-by-product.component')
@@ -114,19 +133,23 @@ export const routes: Routes = [
         data: { renderMode: 'client' }
       },
       {
-        // RUTA PARA CREAR UN NUEVO ELEMENTO
-        path: 'common-data/new', // O 'common-data/create' si lo prefieres
+        path: 'common-data/new',
         loadComponent: () => import('./@presentation/pages/support/manage-common-data/manage-common-data.component')
           .then(m => m.ManageCommonDataComponent),
         data: { renderMode: 'client' }
       }
     ],
   },
+
+  // =================================================================
+  //  RUTAS DE PANEL DE ADMINISTRACIÓN (SYSTEM-ADMIN)
+  // =================================================================
   {
     path: 'system-admin',
     component: SystemComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'control', pathMatch: 'full' },
       {
         path: 'control',
         loadComponent: () => import('./@presentation/system-admin/admin/system/register-control/register-control.component')
@@ -167,11 +190,16 @@ export const routes: Routes = [
       }
     ],
   },
+
+  // =================================================================
+  //  RUTAS DE PANEL DE NEGOCIO (BUSSINESS)
+  // =================================================================
   {
     path: 'bussiness',
     component: PageComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'warehouse', pathMatch: 'full' },
       {
         path: 'warehouse',
         loadComponent: () => import('./@presentation/pages/bussiness/warehouse/ware-house.component')
@@ -183,108 +211,38 @@ export const routes: Routes = [
           .then(m => m.DetailWarehouseComponent),
         data: { renderMode: 'client' }
       },
+      
       {
-        path: 'detail/new',
-        loadComponent: () => import('./@presentation/pages/bussiness/purchase-order/detail-purchase-order/detail-purchase-order.component')
-          .then(m => m.DetailPurchaseOrderComponent),
+        path: 'purchase-order',
+          loadComponent: () => import('./@presentation/pages/bussiness/purchase-order/purchase-order.component')
+          .then(m => m.PurchaseOrderComponent),
         data: { renderMode: 'client' }
       },
       {
-        path: 'purchase-order',
-        children: [
-          {
-            path: '',
-            loadComponent: () => import('./@presentation/pages/bussiness/purchase-order/purchase-order.component')
-              .then(m => m.PurchaseOrderComponent)
-          },
-          {
-            path: 'detail/:id',
-            loadComponent: () => import('./@presentation/pages/bussiness/purchase-order/detail-purchase-order/detail-purchase-order.component')
-              .then(m => m.DetailPurchaseOrderComponent),
-            data: { renderMode: 'client' }
-          },
-          {
-            path: 'detail/new',
-            loadComponent: () => import('./@presentation/pages/bussiness/purchase-order/detail-purchase-order/detail-purchase-order.component')
-              .then(m => m.DetailPurchaseOrderComponent),
-            data: { renderMode: 'client' }
-          }
-        ]
-      },
-      {
         path: 'purchase-order-item',
-        children: [
-          {
-            path: '',
-            loadComponent: () =>
-              import('./@presentation/pages/bussiness/purchase-order-item/purchase-order-item.component')
-                .then(m => m.PurchaseOrderItemComponent)
-          },
-          {
-            path: 'detail/:id',
-            loadComponent: () =>
-              import('./@presentation/pages/bussiness/purchase-order-item/detail-purchase-order-item/detail-purchase-order-item.component')
-                .then(m => m.DetailPurchaseOrderItemComponent),
-            data: { renderMode: 'client' }
-          },
-          {
-            path: 'detail/new',
-            loadComponent: () =>
-              import('./@presentation/pages/bussiness/purchase-order-item/detail-purchase-order-item/detail-purchase-order-item.component')
-                .then(m => m.DetailPurchaseOrderItemComponent),
-            data: { renderMode: 'client' }
-          }
-        ]
+        loadComponent: () => import('./@presentation/pages/bussiness/purchase-order-item/purchase-order-item.component')
+          .then(m => m.PurchaseOrderItemComponent),
+        data: { renderMode: 'client' }
       },
       {
         path: 'inventory',
-        children: [
-          {
-            path: '',
-            loadComponent: () =>
-              import('./@presentation/pages/bussiness/inventory/inventory/inventory.component')
-                .then(m => m.InventoryComponent)
-          },
-          {
-            path: 'detail/:id',
-            loadComponent: () =>
-              import('./@presentation/pages/bussiness/inventory/detail-inventory/detail-inventory.component')
-                .then(m => m.DetailInventoryComponent),
-            data: { renderMode: 'client' }
-          },
-          {
-            path: 'detail/new',
-            loadComponent: () =>
-              import('./@presentation/pages/bussiness/inventory/detail-inventory/detail-inventory.component')
-                .then(m => m.DetailInventoryComponent),
-            data: { renderMode: 'client' }
-          }
-        ]
+        loadComponent: () => import('./@presentation/pages/bussiness/inventory/inventory/inventory.component')
+          .then(m => m.InventoryComponent),
+        data: { renderMode: 'client' }
       },
-      
-{
-path: 'bussiness',
-children: [
-  { path: '', redirectTo: 'spi-control', pathMatch: 'full' },
+    ],
+  },
+
+  // =================================================================
+  //  ¡SOLUCIÓN! RUTAS DE REDIRECCIÓN A NIVEL RAÍZ (ÚLTIMAS RUTAS)
+  // =================================================================
   {
-    path: 'spi-control',
-    loadChildren: () => import('./@presentation/web-pages/spi-control/spi-control.routes')
-      .then(m => m.SPI_CONTROL_ROUTES),
-    data: { renderMode: 'client' }
+    path: '',
+    redirectTo: '/home/main',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/home/main',
   }
-]
-
-},
-
-      
-      {
-        path: 'spi-control', // O como llames a tu ruta principal
-        loadChildren: () => import('./@presentation/web-pages/spi-control/spi-control.routes').then(m => m.SPI_CONTROL_ROUTES)
-      },
-      // Redirección por defecto
-      { path: '', redirectTo: 'home/main', pathMatch: 'full' },
-      { path: '**', redirectTo: 'home/main' },
-
-    ]
-  } // <--- esta llave estaba faltando
 ];

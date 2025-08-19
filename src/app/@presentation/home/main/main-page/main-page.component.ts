@@ -24,7 +24,7 @@ import { AuthenticationRepository } from '../../../../@domain/repository/reposit
 import { AuthStateService } from '../../../../@data/services/AuthStateService';
 import { SliderComponent } from '../../../@common-components/slider/slider.component';
 import { DetailContactComponent } from '../../../@common-components/contact/detail-contact.component';
-
+import { YouTubePlayerModule } from '@angular/youtube-player';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -36,7 +36,7 @@ import { DetailContactComponent } from '../../../@common-components/contact/deta
     NbButtonModule,
     NebularSharedModule,
     ImagenCatchInformationComponent,
-    ReactiveFormsModule,SliderComponent,DetailContactComponent
+    ReactiveFormsModule,SliderComponent,DetailContactComponent,YouTubePlayerModule
   ],
 })
 export class MainPageComponent implements OnInit {
@@ -50,8 +50,7 @@ export class MainPageComponent implements OnInit {
   ) { }
 
   catalogImagesMetadata: RespImagenProductRank[] = [];
-
-
+    videoId = 'kYfJxffe-3c';
   productosCargados: RespProduct[] = []; // ✅ lista de productos ya disponibles
   selectToken?: string = '';
   selectCountainerToken: any;

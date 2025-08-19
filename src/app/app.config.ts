@@ -1,15 +1,8 @@
 import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom, inject, LOCALE_ID, PLATFORM_ID, provideAppInitializer } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatTableModule } from '@angular/material/table';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NbThemeModule, NbLayoutModule, NbToastrModule, NbDialogModule, NbSidebarModule, NbMenuModule, NbWindowModule, NbOverlayModule, NbOverlayContainer, NbOverlayContainerAdapter, NbDialogService, NbDatepickerModule, NbTimepickerModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,9 +35,6 @@ import { ProductRepository } from './@domain/repository/repository/ProductReposi
 import { ProductService } from './@data/services/ProductService';
 import { TenantInterceptor } from './@data/interceptors/TenantInterceptor';
 import { DebugInterceptor } from './@data/interceptors/DebugInterceptor';
-import { initApp } from './@data/interceptors/app.init';
-import { QuotationService } from './@data/services/quotation.service';
-import { QuotationRepository } from './@domain/repository/repository/quotation.repository';
 import { WarehouseService } from './@data/services/house-wore.service';
 import { InventoryService } from './@data/services/inventory.repository';
 import { PurchaseOrderItemService } from './@data/services/purchase-order-item.service';
@@ -55,7 +45,7 @@ import { PurchaseOrderRepository } from './@domain/repository/repository/purchas
 import { WarehouseRepository } from './@domain/repository/repository/warehouse.repository';
 import { ContactService } from './@data/services/contact.service';
 import { ContactRepository } from './@domain/repository/repository/contact.repository';
-
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 export function initConfig(constService: Const) {
   return () =>
     Promise.all([constService.loadCommonConfig(), constService.loadEntidadConfig()])
@@ -82,20 +72,21 @@ export const appConfig: ApplicationConfig = {
       BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
-      MatButtonModule,
-      MatInputModule,
-      MatTableModule,
-      MatDialogModule,
-      MatDatepickerModule,
-      MatNativeDateModule,
       NbThemeModule.forRoot({ name: 'corporate' }),
       NbEvaIconsModule,
       NbSidebarModule.forRoot(),
       NbDialogModule.forRoot(),
       NbMenuModule.forRoot(),
       NbWindowModule.forRoot(),
-      NbToastrModule.forRoot(), NbDatepickerModule.forRoot(), // ✅ Ya agregado
-      NbTimepickerModule.forRoot(), NbMomentDateModule, NbDateFnsDateModule
+      NbToastrModule.forRoot(),
+       NbDatepickerModule.forRoot(), // ✅ Ya agregado
+      NbTimepickerModule.forRoot(),
+     
+      NbDateFnsDateModule.forRoot({
+          format: 'dd/MM/yyyy HH:mm:ss'
+      }),
+  
+
     ),
 
     provideAppInitializer(

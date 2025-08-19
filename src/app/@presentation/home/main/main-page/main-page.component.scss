@@ -275,7 +275,7 @@ app-imagen-catch-information ::ng-deep img {
 
 
 /* ============================================= */
-/* ===== ESTILOS PARA EL FOOTER ===== */
+/* ===== ESTILOS PARA EL FOOTER (MODIFICADOS) ===== */
 /* ============================================= */
 .surreal-footer {
   background: #1a2138;
@@ -284,23 +284,82 @@ app-imagen-catch-information ::ng-deep img {
   border-radius: 20px;
   margin-top: 5rem;
 }
+
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* CORRECCIÓN: Usamos un grid más flexible. Por defecto 1 columna. */
+  grid-template-columns: 1fr; 
   gap: 2.5rem;
   margin-bottom: 3rem;
 }
+
+/* En pantallas más grandes (tablets y escritorio), usamos 4 columnas */
+@media (min-width: 992px) {
+  .footer-content {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .contact-form-column {
+    /* Hacemos que la columna del formulario ocupe 2 espacios */
+    grid-column: span 2;
+  }
+}
+
 .footer-column .footer-title {
   font-size: 1.2rem;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
+
 .footer-description {
   line-height: 1.6;
   font-size: 0.9rem;
+  opacity: 0.7;
 }
-/* ... (y el resto de estilos del footer) ... */
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+}
+.social-link {
+  /* ... tus estilos de social-link ... */
+}
+
+/* ============================================= */
+/* ===== NUEVO: ESTILOS PARA VIDEO EN FOOTER ===== */
+/* ============================================= */
+.video-container-footer {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px; /* Bordes más sutiles para el footer */
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  background-color: #000;
+}
+
+:host ::ng-deep .video-container-footer iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .footer-bottom {
   text-align: center;
   padding-top: 2rem;
@@ -312,7 +371,6 @@ app-imagen-catch-information ::ng-deep img {
   font-size: 0.85rem;
   opacity: 0.6;
 }
-
 
 /* =================================================== */
 /* ===== ESTILOS PARA BOTONES FLOTANTES ===== */
